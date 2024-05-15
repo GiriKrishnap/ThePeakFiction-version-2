@@ -7,17 +7,17 @@ import { StrictMode } from 'react';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <SocketProvider>
+  <SocketProvider>
 
-      <GoogleOAuthProvider clientId='914371032098-fiucf9n409fm0ka4gfpvnnt0kucs1itb.apps.googleusercontent.com' >
+    <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID} >
 
-        <StrictMode>
-          <App />
-        </StrictMode>
+      <StrictMode>
+        <App />
+      </StrictMode>
 
-      </GoogleOAuthProvider>
+    </GoogleOAuthProvider>
 
-    </SocketProvider>
+  </SocketProvider>
 );
 
 

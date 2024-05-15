@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import {  novelDetailedView } from '../../util/constants';
+import { novelDetailedView } from '../../util/constants';
 import { getMostViewedNovelsAPI } from '../../APIs/userAPI';
-import toast from 'react-hot-toast';
 //.........................................................................
 
 
@@ -20,25 +19,28 @@ export default function RowPost({ axiosUrl, limit = Infinity, title }) {
     //.........................................................................
 
     useEffect(() => {
-        getMostViewedNovels()
+        getNovels()
     }, [])
 
     //.........................................................................
 
-    const getMostViewedNovels = async () => {
+    const getNovels = async () => {
         try {
 
             const response = await getMostViewedNovelsAPI(axiosUrl);
-
             if (response.data.status) {
                 setNovels(response.data.novels.slice(0, limit));
                 setLoading(false);
             }
 
         } catch (error) {
-            console.log('error on getMostViewedNovels => ' + error);
-            toast.error(error.message);
-
+            console.log('error on getNovels IN rOWpOST => ' + error);
+            if (error.response.data.tokenError) {
+                localStorage.removeItem("user-login");
+                localStorage.clear();
+                socket.disconnect();
+                navigate('/');
+            }
         }
     }
 

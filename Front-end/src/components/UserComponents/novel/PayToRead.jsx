@@ -24,6 +24,7 @@ export default function PayToRead() {
     const [chapterNumber, setChapterNumber] = useState('');
     const [price, setPrice] = useState(0);
     const [password, setPassword] = useState('');
+    const [isLoading, setIsLoading] = useState(true);
 
     //.........................................................................
 
@@ -60,7 +61,7 @@ export default function PayToRead() {
                     navigate(`${readNovel}?NovelId=${novelId}&number=${chapterNo}`);
 
                 } else if (response.data.price) {
-
+                    setIsLoading(false);
                     setPrice(response.data.price);
                     setAuthorId(response.data.authorId)
 
@@ -126,46 +127,69 @@ export default function PayToRead() {
     return (
         <>
 
-            <div className='h-screen flex justify-center place-items-center text-black select-none'>
+            {
+                isLoading ? <div className="flex flex-col items-center justify-center min-h-screen p-5 min-w-screen bg-slate-600">
 
-                <div className='md:w-1/2 w-full m-10 h-1/2 bg-white rounded-2xl drop-shadow-xl 
-                      flex flex-col justify-center place-items-center md:p-40 p-20 hover:shadow-2xl '>
 
-                    <p className='poppins2 font-bold md:text-4xl text-2xl'>
-                        Pay - to - Read
-                    </p>
-
-                    <small className='text-gray-400 mt-2 font-mono'>
-                        pay to read this chapter
-                    </small>
-
-                    <p className='text-3xl p-1 m-5 text-white font-bold bg-gray-400 
-                    w-full text-center rounded-2xl shadow-sm'>
-                        {price}rs
-                    </p>
-
-                    <input type="password" name="password" className='w-full p-2 rounded-xl bg-gray-200
-                    focus:bg-gray-600 focus:text-white tracking-widest text-center poppins2 font-extrabold
-                    focus:shadow-xl'
-                        placeholder='Password'
-                        onChange={(e) => setPassword(e.target.value)} value={password} maxLength={8}
-                        required autoComplete='false' />
-
-                    <div className='grid grid-cols-2 w-full gap-2'>
-                        <button className='w-full p-2 mt-4 bg-blue-500 text-white
-                        rounded-xl hover:bg-blue-600 hover:shadow-xl' onClick={handleBackButton}>
-                            back
-                        </button>
-
-                        <button className='w-full p-2 mt-4 bg-blue-400 text-white
-                        rounded-xl hover:bg-blue-600 hover:shadow-xl' onClick={handleSubmit}>
-                            Confirm
-                        </button>
+                    <div className="flex space-x-2 animate-pulse">
+                        <div className="w-7 h-16 bg-gray-100 rounded-full"></div>
+                        <div class="w-7 h-14 bg-gray-100 rounded-full"></div>
+                        <img src="../assets/logo/webLogo.png" alt="logo" className='w-24 h-240' />
+                        <div className="w-7 h-14 bg-gray-100 rounded-full"></div>
+                        <div className="w-7 h-16 bg-gray-100 rounded-full"></div>
                     </div>
+                    <p className='font-mono text-white animate-pulse'>
+                        - Checking payment status...please wait 🚀 -
+                    </p>
+
+
 
                 </div>
 
-            </div>
+                    :
+
+
+
+
+                    <div className='h-screen flex justify-center place-items-center text-black select-none'>
+
+                        <div className='md:w-1/2 w-full m-10 h-1/2 bg-white rounded-2xl drop-shadow-xl 
+                      flex flex-col justify-center place-items-center md:p-40 p-20 hover:shadow-2xl '>
+                            <p className='poppins2 font-bold md:text-4xl text-2xl'>
+                                Pay - to - Read
+                            </p>
+                            <small className='text-gray-400 mt-2 font-mono'>
+                                pay to read this chapter
+                            </small>
+
+                            <p className='text-3xl p-1 m-5 text-white font-bold bg-gray-400 
+                    w-full text-center rounded-2xl shadow-sm'>
+                                {price}rs
+                            </p>
+
+                            <input type="password" name="password" className='w-full p-2 rounded-xl bg-gray-200
+                    focus:bg-gray-600 focus:text-white tracking-widest text-center poppins2 font-extrabold
+                    focus:shadow-xl'
+                                placeholder='Password'
+                                onChange={(e) => setPassword(e.target.value)} value={password} maxLength={8}
+                                required autoComplete='false' />
+
+                            <div className='grid grid-cols-2 w-full gap-2'>
+                                <button className='w-full p-2 mt-4 bg-blue-500 text-white
+                        rounded-xl hover:bg-blue-600 hover:shadow-xl' onClick={handleBackButton}>
+                                    back
+                                </button>
+
+                                <button className='w-full p-2 mt-4 bg-blue-400 text-white
+                        rounded-xl hover:bg-blue-600 hover:shadow-xl' onClick={handleSubmit}>
+                                    Confirm
+                                </button>
+                            </div>
+
+                        </div>
+
+                    </div>
+            }
 
         </>
     )

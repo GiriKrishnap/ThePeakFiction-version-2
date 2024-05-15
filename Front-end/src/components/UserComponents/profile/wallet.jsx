@@ -26,7 +26,7 @@ export default function WalletComponent() {
                 toast.error("status is false");
             }
         } catch (error) {
-            console.log(error);
+            console.log('error on fetchGetWallet' ,error);
             toast.error(error.message);
 
         }
@@ -44,7 +44,7 @@ export default function WalletComponent() {
 
 
     const makePayment = async (givenAmount) => {
-        const stripe = await loadStripe(process.env.REACT_APP_STRIP_PUBLISHER_KEY);
+        const stripe = await loadStripe(import.meta.env.VITE_APP_STRIP_PUBLISHER_KEY);
 
         const body = {
             amount: givenAmount

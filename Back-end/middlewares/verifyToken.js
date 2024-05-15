@@ -37,13 +37,13 @@ const protect = asyncHandler(async (req, res, next) => {
     } catch (error) {
         if (error.name === 'JsonWebTokenError') {
             console.log(' - Invalid token - ')
-            return res.status(401).json({ message: 'Invalid token' });
+            return res.status(401).json({ message: 'Invalid token', tokenError: true });
         }
 
         // Handle other errors appropriately
         console.error(error);
         console.log('Internal server error')
-        return res.status(500).json({ message: 'Internal server error' });
+        return res.status(500).json({ message: 'Internal server error', tokenError: true });
     }
 });
 

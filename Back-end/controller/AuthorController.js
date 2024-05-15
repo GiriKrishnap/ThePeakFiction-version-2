@@ -11,8 +11,6 @@ module.exports = {
     authorCreate: async (req, res) => {
         try {
 
-            console.log(' - here at authorCreate - ');
-
             const { title, description, authorId } = req.body;
 
             const CoverPath = req.file.path;
@@ -67,7 +65,6 @@ module.exports = {
     getAllAuthorNovels: async (req, res) => {
         try {
             const authorId = req.params.id;
-            console.log("authorId -- -- ", authorId);
 
             const novels = await NovelModel.find({ author_id: authorId }).sort({ publish_date: -1 }).populate('genre');
             res.json({ status: true, novels })
@@ -159,7 +156,6 @@ module.exports = {
         try {
 
             const { novelId } = req.body
-            console.log(novelId);
             const novelCancel = await NovelModel.updateOne({ _id: novelId }, { $set: { status: 'cancelled' } });
             if (novelCancel) {
                 res.json({ status: true, message: 'Novel Cancelled' });
@@ -175,7 +171,6 @@ module.exports = {
         try {
 
             const { novelId, chapterId } = req.body
-            console.log(novelId, chapterId);
 
             const novelCancel = await NovelModel.updateOne({ _id: novelId },
                 {
@@ -200,7 +195,6 @@ module.exports = {
         try {
 
             const { novelId, chapterId } = req.query
-            console.log(novelId, chapterId);
 
             const chapter = await NovelModel.findOne(
                 { _id: novelId, "chapters._id": chapterId },

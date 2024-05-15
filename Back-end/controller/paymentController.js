@@ -1,16 +1,9 @@
 //-----------------------------
 require('dotenv').config();
-const path = require('path');
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
 const stripe = require('stripe')(process.env.STRIP_SECRET_KEY);
 ///---------------------------
-const UserModel = require('../model/UserModel');
-const GenreModel = require('../model/genreModel');
-const NovelModel = require('../model/novelModel');
 const WalletModel = require('../model/walletModel');
 ///---------------------------
-
 
 module.exports = {
 
@@ -38,13 +31,12 @@ module.exports = {
                 ],
                 mode: 'payment',
 
-                success_url: `https://thepeakfiction.vercel.app/profile/success?sessionId={CHECKOUT_SESSION_ID}`,
-                cancel_url: `https://thepeakfiction.vercel.app/profile`,
+                success_url: `http://localhost:5173/profile/success?sessionId={CHECKOUT_SESSION_ID}`,
+                cancel_url: `http://localhost:5173/profile`,
 
             });
 
-            session.success_url = `https://thepeakfiction.vercel.app/profile/success?sessionId=${session.id}`
-            console.log(session);
+            session.success_url = `http://localhost:5173/profile/success?sessionId=${session.id}`
 
             res.json({ id: session.id });
 
@@ -60,33 +52,46 @@ module.exports = {
 
             const { sessionId, userId } = req.body;
 
-            const session = await stripe.checkout.sessions.retrieve(sessionId);
+            const query = {
+                user_id: userId,
+                amountAdd: { $elemMatch: { session_id: sessionId } }
+            };
+            const projection = { _id: 0, user_id: 0, walletAmount: 0 };
 
-            if (session.payment_status === 'paid') {
+            let walletData = await WalletModel.find(query, projection)
 
-                console.log('the payment is successful ⭐⭐⭐⭐');
+            if (walletData[0]?.amountAdd) {
 
-                let AddHistory = {
-                    amount: session.amount_total / 100,
-                    date: new Date()
-                };
-
-                console.log(' \n add history is here - ', AddHistory)
-
-                await WalletModel.updateOne(
-                    { user_id: userId },
-                    {
-                        $inc: { walletAmount: session.amount_total / 100 },
-                        $push: { amountAdd: AddHistory }
-                    },
-                    { upsert: true }
-                );
-
-                res.json({ status: true, message: 'Wallet Updated' });
+                res.json({ status: true, message: 'Wallet Already Updated' });
 
             } else {
-                console.log('the payment is a Failed  🤑🤑');
+
+                const session = await stripe.checkout.sessions.retrieve(sessionId);
+
+                if (session.payment_status === 'paid') {
+
+                    let AddHistory = {
+                        amount: session.amount_total / 100,
+                        session_id: sessionId,
+                        date: new Date()
+                    };
+
+                    await WalletModel.updateOne(
+                        { user_id: userId },
+                        {
+                            $inc: { walletAmount: session.amount_total / 100 },
+                            $push: { amountAdd: AddHistory }
+                        },
+                        { upsert: true }
+                    );
+
+                    res.json({ status: true, message: 'Wallet Updated' });
+
+                } else {
+                    res.json({ status: true, message: 'payment Failed' });
+                }
             }
+
 
         } catch (error) {
             res.status(500).json({ error: 'server catch error :: confirm payment' });
@@ -94,8 +99,6 @@ module.exports = {
 
         }
     }
-    ///---------------------------
-    ///---------------------------
     ///---------------------------
 }
 

@@ -1,4 +1,4 @@
-import  { useEffect } from 'react'
+import { useEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
 import { confirmPaymentURL, profileUrl } from '../../util/constants';
 import axios from '../../util/axios'
@@ -24,7 +24,7 @@ function PaymentSuccess() {
 
             const res = await axios.post(confirmPaymentURL, body, { headers: { "Content-Type": "application/json" } })
             if (res.data.status) {
-                toast.success('wallet updated');
+                toast.success(res.data.message);
             } else {
                 toast.error('there is error');
             }

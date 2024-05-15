@@ -7,7 +7,7 @@ import FooterComponents from '../../components/UserComponents/header-footer/foot
 const ProfileComponents = lazy(() => import('../../components/UserComponents/profile/profile.jsx'));
 const WalletComponents = lazy(() => import('../../components/UserComponents/profile/wallet.jsx'));
 //.....................................................................................
-const stripePromise = loadStripe(process.env.REACT_APP_STRIP_PUBLISHER_KEY);
+const stripePromise = loadStripe(import.meta.env.VITE_APP_STRIP_PUBLISHER_KEY);
 //.....................................................................................
 
 

@@ -16,10 +16,16 @@ const Wallet = new mongoose.Schema({
     amountAdd: [{
         amount: {
             type: Number,
+            require: true
+        },
+        session_id: {
+            type: String,
+            require: true
         },
         //----------------
         date: {
             type: Date,
+            require: true
         }
         //----------------
     }],
