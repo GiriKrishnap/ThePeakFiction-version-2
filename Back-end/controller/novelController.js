@@ -459,8 +459,18 @@ module.exports = {
 
                     console.log('HERE AUTHOR ID --> ', novelDetails.author_id.toString());
 
-                    // const authorWalletUpdate = await WalletModel.updateOne({ user_id: novelDetails.author_id },
-                    //     { $inc: { walletAmount: price } });
+                    let AddHistory = {
+                        amount: price,
+                        novel_title: novelDetails.title,
+                        date: new Date()
+                    };
+
+
+                    await WalletModel.updateOne({ user_id: novelDetails.author_id },
+                        {
+                            $inc: { walletAmount: price },
+                            $push: { amountAdd: AddHistory }
+                        });
 
                     if (walletUpdate) {
                         res.json({ status: true, message: 'Paid' });

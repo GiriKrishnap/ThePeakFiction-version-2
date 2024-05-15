@@ -26,7 +26,7 @@ export default function WalletComponent() {
                 toast.error("status is false");
             }
         } catch (error) {
-            console.log('error on fetchGetWallet' ,error);
+            console.log('error on fetchGetWallet', error);
             toast.error(error.message);
 
         }
@@ -155,8 +155,8 @@ export default function WalletComponent() {
 
                     <div className='text-center font-mono select-none'>
                         <small className='text-gray-300'>Your Add History</small>
-                        <div className='flex flex-col gap-3 duration-700 overflow-y-scroll
-                         bg-gray-700 rounded-b-3xl w-full drop-shadow-md p-5 poppins2'>
+                        <div className='flex flex-col gap-3 max-h-72 duration-700 overflow-y-scroll
+                         bg-gray-700 rounded-b-3xl w-full drop-shadow-md p-3 poppins2'>
 
                             {
                                 walletDetails.amountAdd.map((item) => (
@@ -164,11 +164,17 @@ export default function WalletComponent() {
                                     <div className='bg-gray-400 min-h-16 rounded-xl flex place-items-center
                                     gap-5 pl-4 pr-4 poppins2' key={item._id}>
                                         <div className='grow text-left'>
-                                            <p className='md:text-5xl text-2xl text-green-300'>-{item.amount}</p>
+                                            <p className='md:text-5xl text-2xl text-green-300'>+{item.amount}</p>
                                         </div>
                                         <div className='text-right md:text-lg text-xs'>
-                                            <p>Added to wallet</p>
-                                            <p className='text-gray-200 font-mono md:text-lg text-xs'>
+
+                                            {
+                                                item.novel_title ?
+                                                    <p className='text-xs'>from {item.novel_title}</p> :
+                                                    <p>Added to wallet</p>
+                                            }
+
+                                            <p className='text-gray-200 font-mono md:text-sm text-xs'>
                                                 {new Date(item.date).toLocaleDateString("en-GB")} - {new Date(item.date)
                                                     .toLocaleTimeString('en-GB', {
                                                         hour: '2-digit',
@@ -196,7 +202,7 @@ export default function WalletComponent() {
                     <div className='text-center font-mono select-none'>
                         <small className='text-gray-300'>Your Spend History</small>
                         <div className='flex flex-col gap-3 duration-700 overflow-y-scroll
-                         bg-gray-700 rounded-b-3xl w-full drop-shadow-md p-5 poppins2'>
+                         bg-gray-700 rounded-b-3xl w-full max-h-72 drop-shadow-md p-5 poppins2'>
 
                             {
                                 walletDetails.amountUse.map((item) => (
@@ -207,8 +213,8 @@ export default function WalletComponent() {
                                             <p className='md:text-5xl text-2xl text-red-300'>-{item.amount}</p>
                                         </div>
                                         <div className='text-right'>
-                                            <p className='md:text-lg text-xs'>Spend on {item.novelName} chap-{item.chapterNo}</p>
-                                            <p className='text-gray-200 font-mono md:text-lg text-xs'>
+                                            <p className='md:text-sm text-xs'>Spend on {item.novelName} chap-{item.chapterNo}</p>
+                                            <p className='text-gray-200 font-mono text-xs'>
                                                 {new Date(item.date).toLocaleDateString("en-GB")} - {new Date(item.date)
                                                     .toLocaleTimeString('en-GB', {
                                                         hour: '2-digit',

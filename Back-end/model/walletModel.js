@@ -20,7 +20,9 @@ const Wallet = new mongoose.Schema({
         },
         session_id: {
             type: String,
-            require: true
+        },
+        novel_title: {
+            type: String
         },
         //----------------
         date: {
