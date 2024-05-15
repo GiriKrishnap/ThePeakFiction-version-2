@@ -1,0 +1,69 @@
+.mainBody-login {
+    padding: 20px;
+    padding-left: 30px;
+    padding-right: 30px;
+    background-color: #f9f7f7;
+    border-radius: 30px;
+    margin: 30px;
+    margin-top: 50px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.logo-login {
+    height: 200px;
+    width: 200px;
+}
+
+.right-login {
+    padding: 20px;
+
+}
+
+.left-login {
+    border-radius: 30px;
+    padding-top: 5%;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    transition: 0.3s ease-out;
+}
+
+.input-login {
+    width: 100%;
+    margin: 5px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    border: 0;
+    padding: 15px;
+    padding-left: 20px;
+    background-color: rgb(233, 233, 233);
+    transition: 0.2s ease-out;
+}
+
+.input-login:hover {
+    transform: scale(1.03);
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.button-login {
+    width: 100%;
+    border-radius: 10px;
+    border: 0;
+    padding: 15px;
+    padding-left: 20px;
+    background-color: #588bca;
+    color: white;
+    transition: 0.2s ease-out;
+}
+
+.button-login:hover {
+    transform: scale(1.03);
+    background-color: #dadada;
+    color: #3F72AF;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.aTag-login {
+    text-decoration: none;
+    letter-spacing: 4px;
+    margin-top: 5px;
+}
+

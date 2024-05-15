@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lora&display=swap');
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  margin: 0;
+  background-color: rgb(66, 154, 255) !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.handwrite-font {
+  font-family: 'Pacifico', cursive !important;
+}
+
+.bold-text {
+  font-family: 'Oswald', sans-serif;
+}
+
+.poppins {
+  font-family: 'Oswald', sans-serif;
+}
+
+.dancing-font {
+  font-family: 'Dancing Script', cursive;
+}
+
+.poppins2 {
+  font-family: 'Poppins', sans-serif;
+}
+
+.bgColor {
+  background-color: #182335;
+}
+
+.novelFont {
+  font-family: 'Lora', serif;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.hover-scale {
+  transition: 0.5s;
+
+}
+
+.hover-scale:hover {
+  transform: scale(1.02);
+  box-shadow: rgba(0, 0, 0, 0) 0px 1px 1px;
+}
+
+div::-webkit-scrollbar {
+  width: 10px;
+}
+
+div::-webkit-scrollbar-track {
+  background-color: RGB(55, 65, 81);
+  border-radius: 15px;
+}
+
+div::-webkit-scrollbar-thumb {
+  background: #3B82F6;
+  border-radius: 15px;
+}
+
+.MuiPagination-root .MuiButtonBase-root {
+  color: #fff;
+  font-family: 'Poppins', sans-serif;
+}
+
+.MESSAGE_PART {
+
+  max-height: 500px;
+}
+
+.BANNER_PHOTO {
+  -webkit-backface-visibility: hidden;
+
+}
+
+hr {
+  border: solid 1px black;
+  width: 96%;
+  color: #FFFF00;
+  height: 1px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
