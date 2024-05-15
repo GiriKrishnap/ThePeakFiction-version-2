@@ -76,8 +76,8 @@ export default function GridPost({ axiosUrl, title, home = false }) {
             <div className='bg-gray-800 overflow-hidden flex flex-col pb-5 text-center pt-8 '>
 
                 {currNovels.length > 0 ? '' :
-                    < h1 className='font-mono text-5xl text-white text-center mt-60 mb-4'>
-                        - There is No Novels <i className="fa-solid fa-face-sad-tear "></i> -
+                    < h1 className='font-sans md:text-5xl text-xl text-white text-center m-28 animate-pulse'>
+                        - T h e r e i s N o  N o v e l s 🤐 -
                     </h1>
                 }
                 {currNovels.length > 0 ? <p className='text-white poppins text-4xl text-left mb-1 ml-2'>{title}</p> : ''}

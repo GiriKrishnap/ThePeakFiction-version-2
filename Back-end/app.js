@@ -62,7 +62,7 @@ const io = new Server(server, {
 io.on("connection", (socket) => {
     console.log('connect')
     socket.on("join_room", (room) => {
-        console.log('joined - ', room);
+        console.log('joined Chat - ', room);
         socket.join(room);
     });
 

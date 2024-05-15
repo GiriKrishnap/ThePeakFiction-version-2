@@ -246,8 +246,8 @@ export default function Filter() {
 
                 {/* THREE_____________ */}
                 {novels.length > 0 ? '' :
-                    < h1 className='font-mono text-5xl text-white text-center mt-10 mb-4'>
-                        - There is No Novels <i className="fa-regular fa-face-sad-tear "></i> -
+                    < h1 className='font-sans md:text-4xl text-xl text-white text-center m-28 animate-pulse'>
+                        - T h e r e i s N o  N o v e l s 😑 -
                     </h1>
                 }
                 <div className='grid grid-cols-2 p-5 gap-2'>
