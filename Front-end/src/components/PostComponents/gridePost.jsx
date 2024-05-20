@@ -111,7 +111,7 @@ export default function GridPost({ axiosUrl, title, home = false }) {
                                         </div>
 
 
-                                        <p className='poppins text-white text-left mt-1 text-xl'>{item.title}</p>
+                                        <p className='poppins text-white text-left mt-1 text-xl'>{item?.title}</p>
 
 
                                         {/* GENRES-------------------------------- */}
