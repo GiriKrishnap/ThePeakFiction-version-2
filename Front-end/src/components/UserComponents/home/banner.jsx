@@ -85,7 +85,7 @@ export default function Banner() {
 
                     <p className={`${novel.title?.length < 15 ? "md:text-7xl" : 'md:text-6xl'} text-4xl m-1 
                      md:mt-8 mt-8 font-medium bold-text text-white drop-shadow-md hover:animate-pulse duration-1000 `}>
-                        {novel?.title ? novel.title : 'loading... :)'}
+                        {novel?.title ? novel?.title : 'loading... :)'}
                     </p>
 
                     <p className='text-gray-200 mt-3 italic md:h-36 h-full overflow-hidden 
@@ -135,14 +135,14 @@ export default function Banner() {
                         <div className='flex mt-3'>
                             <button className=' bg-red-500 h-10 p-2 w-52 rounded-full text-white 
                                     font-medium mr-2 drop-shadow-lg hover:scale-105 hover:ml-1 hover:bg-red-600 
-                                    duration-500' onClick={() => handleClick(novel._id)}>
+                                    duration-500' onClick={() => handleClick(novel?._id)}>
                                 <i className="fa-solid fa-book-open"></i> Read Now
                             </button>
 
                             <button className=' bg-blue-500 h-10 p-2 w-52 rounded-full
                                 text-white font-medium drop-shadow-lg hover:scale-105 hover:ml-1 hover:bg-blue-600 
                                 duration-500'
-                                onClick={() => addToLibrary(novel._id)}>
+                                onClick={() => addToLibrary(novel?._id)}>
                                 <i className="fa-solid fa-circle-plus"></i> Add to library
                             </button>
 

@@ -65,17 +65,17 @@ export default function RowPost({ axiosUrl, limit = Infinity, title }) {
                 ${loading && "animate-pulse"}`}>
 
                     {
-                        novels.length > 0 &&
+
                         novels.map((novel, index) => (
 
                             <div className='bg-blue-500 h-60 rounded-md 
                                     hover:m-1 hover:scale-105 duration-200 overflow-hidden'
-                                key={novel._id}
+                                key={novel?._id}
                                 style={{
-                                    backgroundImage: `url(${novel.cover})`,
+                                    backgroundImage: `url(${novel?.cover})`,
                                     backgroundSize: 'cover'
                                 }}
-                                onClick={() => handleClick(novel._id)}>
+                                onClick={() => handleClick(novel?._id)}>
 
                                 <div className=' w-full h-full p-2 bg-gradient-to-t from-gray-700 to-transparent
                                                      to-90% rounded-md'>
@@ -93,7 +93,7 @@ export default function RowPost({ axiosUrl, limit = Infinity, title }) {
 
                                     <p className='text-white poppins text-lg
                                                      drop-shadow-md mt-28 text-center'>
-                                        {novel.title}
+                                        {novel?.title}
                                     </p>
 
                                 </div>
