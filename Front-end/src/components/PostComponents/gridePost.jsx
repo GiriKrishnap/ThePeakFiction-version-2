@@ -84,6 +84,7 @@ export default function GridPost({ axiosUrl, title, home = false }) {
                 <div className='grid grid-cols-2 p-5 gap-2'>
 
                     {
+                        currNovels.length > 0 &&
                         currNovels.map((item, index) => (
 
                             <div key={item._id}>

@@ -65,6 +65,7 @@ export default function RowPost({ axiosUrl, limit = Infinity, title }) {
                 ${loading && "animate-pulse"}`}>
 
                     {
+                        novels.length > 0 &&
                         novels.map((novel, index) => (
 
                             <div className='bg-blue-500 h-60 rounded-md 
