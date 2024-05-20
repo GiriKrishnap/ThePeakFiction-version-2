@@ -119,7 +119,7 @@ export default function GridPost({ axiosUrl, title, home = false }) {
 
                                             <small className='bg-blue-700 m-0.5 pr-2 pl-2 p-0.5 text-gray-200 
                                                 rounded-xl cursor-default font-mono float-left'>
-                                                Author: {item?.author_id.userName} </small>
+                                                Author: {item?.author_id?.userName} </small>
 
                                             {
                                                 item.genre.map((genre, index) => (

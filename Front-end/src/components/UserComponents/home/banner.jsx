@@ -123,7 +123,7 @@ export default function Banner() {
                 {/* //////////////// */}
                 <div className='p-10 hidden lg:block mt-10 '>
 
-                    <p className='flex text-red-400 poppins drop-shadow-lg font-bold text-2xl tracking-wider'>Author: {novel.author?.userName} </p>
+                    <p className='flex text-red-400 poppins drop-shadow-lg font-bold text-2xl tracking-wider'>Author: {novel?.author?.userName} </p>
                     <p className='flex text-blue-100 poppins drop-shadow-md font-bold text-2xl tracking-wider'>Publish Date: {new Date(novel?.publish_date).toLocaleDateString("en-GB")}</p>
                     <p className='flex text-blue-100 poppins drop-shadow-md font-bold text-2xl tracking-wider'>Rating: {novel?.rate}</p>
 
