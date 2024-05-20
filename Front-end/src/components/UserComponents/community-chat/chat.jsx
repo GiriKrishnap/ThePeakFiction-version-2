@@ -14,7 +14,7 @@ export default function Chat() {
 
     const navigate = useNavigate();
     const location = useLocation();
-    const socket = useMemo(() => io('http://localhost:4000'), [])
+    const socket = useMemo(() => io('https://thepeakfiction.shop'), [])
 
     //.........................................................................
 
