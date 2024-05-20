@@ -113,7 +113,7 @@ export default function Banner() {
                 {/* //////////////// */}
 
                 {
-                    novel.length > 0 ?
+                    novel?.length > 0 ?
                         <div
                             style={{ backgroundImage: `url(${novel?.cover})`, backgroundSize: 'cover' }}
                             className='md:h-64 h-44 m-4 rounded-lg drop-shadow-2xl -rotate-6 bg-black md:w-44
