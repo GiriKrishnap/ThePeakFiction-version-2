@@ -31,12 +31,12 @@ module.exports = {
                 ],
                 mode: 'payment',
 
-                success_url: `http://localhost:5173/profile/success?sessionId={CHECKOUT_SESSION_ID}`,
-                cancel_url: `http://localhost:5173/profile`,
+                success_url: `https://the-peak-fiction-version-2.vercel.app/profile/success?sessionId={CHECKOUT_SESSION_ID}`,
+                cancel_url: `https://the-peak-fiction-version-2.vercel.app/profile`,
 
             });
 
-            session.success_url = `http://localhost:5173/profile/success?sessionId=${session.id}`
+            session.success_url = `https://the-peak-fiction-version-2.vercel.app/profile/success?sessionId=${session.id}`
 
             res.json({ id: session.id });
 
