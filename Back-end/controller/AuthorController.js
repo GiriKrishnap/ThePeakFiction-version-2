@@ -142,7 +142,8 @@ module.exports = {
     getAllGenresAuthor: async (req, res) => {
         try {
 
-            let genres = await GenreModel.find({ is_Hide: false });
+            let genres = await GenreModel.find({ is_Hide: false })
+                .sort({ 'name': 1 });
 
             if (genres) {
 
