@@ -85,7 +85,9 @@ module.exports = {
     getAllGenres: async (req, res) => {
         try {
 
-            let genres = await GenreModel.find().sort({ 'name': 1 });
+            let genres = await GenreModel.find()
+                .sort({ 'name': 1 })
+                .collation({ locale: "en", caseLevel: true });
 
             if (genres) {
 

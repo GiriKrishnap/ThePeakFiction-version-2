@@ -143,7 +143,8 @@ module.exports = {
         try {
 
             let genres = await GenreModel.find({ is_Hide: false })
-                .sort({ 'name': 1 });
+                .sort({ 'name': 1 })
+                .collation({ locale: "en", caseLevel: true });
 
             if (genres) {
 
