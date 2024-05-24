@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { novelDetailedView } from '../../util/constants';
 import { gridePostAPI } from '../../APIs/userAPI';
 import toast from 'react-hot-toast';
@@ -13,59 +13,43 @@ export default function GridPost({ axiosUrl, title, home = false }) {
     //.........................................................................
 
     const navigate = useNavigate();
-    const location = useLocation();
 
     //.........................................................................
 
     const [novels, setNovels] = useState([]);
-    const [currNovels, SetCurrNovels] = useState([]);
     const [pageNumber, setPageNumber] = useState([]);
+    const [currPage, setCurrPage] = useState(1);
 
     //.........................................................................
 
     useEffect(() => {
+        getAllNovels();
+    }, [currPage])
 
-        const queryParams = new URLSearchParams(location.search);
-        const page = queryParams.get('page');
-
-        getAllNovels(page);
-
-    }, [])
-
-    //.........................................................................
-
-    const getAllNovels = async (page) => {
+    const getAllNovels = async () => {
         try {
-            const response = await gridePostAPI(axiosUrl);
+
+            const response = await gridePostAPI(axiosUrl, currPage);
             if (response.data.status) {
                 setNovels(response.data.novels)
-                SetCurrNovels(response.data.novels.slice(0, 6))
-                setPageNumber(Math.ceil(response.data.novels.length / 6))
+                setPageNumber(Math.ceil(response.data.totalNovels / 6));
             }
         } catch (error) {
             console.log(error)
             toast.error(error.message);
-
         }
     }
 
     //.........................................................................
 
     const handleClick = async (novelId) => {
-
         navigate(`${novelDetailedView}?NovelId=${novelId}`, { replace: true });
-
     }
 
     //.........................................................................
 
-    const [currPage, setCurrPage] = useState(1);
-
     const handleChange = (event, value) => {
-
-        SetCurrNovels(novels.slice((value - 1) * 6, value * 6))
         setCurrPage(value);
-
     };
 
     //.........................................................................
@@ -75,17 +59,17 @@ export default function GridPost({ axiosUrl, title, home = false }) {
 
             <div className='bg-gray-800 overflow-hidden flex flex-col pb-5 text-center pt-8 '>
 
-                {currNovels.length > 0 ? '' :
+                {novels.length > 0 ? '' :
                     < h1 className='font-sans md:text-5xl text-xl text-white text-center m-28 animate-pulse'>
                         - T h e r e i s N o  N o v e l s 🤐 -
                     </h1>
                 }
-                {currNovels.length > 0 ? <p className='text-white poppins text-4xl text-left mb-1 ml-2'>{title}</p> : ''}
+                {novels.length > 0 ? <p className='text-white poppins text-4xl text-left mb-1 ml-2'>{title}</p> : ''}
                 <div className='grid grid-cols-2 p-5 gap-2'>
 
                     {
-                        currNovels.length > 0 &&
-                        currNovels.map((item, index) => (
+                        novels.length > 0 &&
+                        novels.map((item, index) => (
 
                             <div key={item._id}>
                                 {/* -------------------NOVEL CARD---------------------------- */}

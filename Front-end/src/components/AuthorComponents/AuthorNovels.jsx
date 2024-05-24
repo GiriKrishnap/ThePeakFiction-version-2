@@ -10,8 +10,8 @@ export default function AuthorNovels() {
     const navigate = useNavigate();
 
     const [novels, setNovels] = useState([]);
-    const [currNovels, SetCurrNovels] = useState([]);
     const [pageNumber, setPageNumber] = useState([]);
+    const [currPage, setCurrPage] = useState(1);
 
     //.........................................................................
 
@@ -25,11 +25,10 @@ export default function AuthorNovels() {
 
             (async () => {
                 try {
-                    const response = await getAuthorNovelsAPI();
+                    const response = await getAuthorNovelsAPI(currPage);
                     if (response.data.status) {
                         setNovels(response.data.novels)
-                        SetCurrNovels(response.data.novels.slice(0, 6))
-                        setPageNumber(Math.ceil(response.data.novels.length / 6))
+                        setPageNumber(Math.ceil(response.data.totalNovels / 6));
                     }
 
                 } catch (error) {
@@ -50,14 +49,11 @@ export default function AuthorNovels() {
 
     //.........................................................................
 
-    const [currPage, setCurrPage] = useState(1);
 
     const handleChange = (event, value) => {
-
-        SetCurrNovels(novels.slice((value - 1) * 6, value * 6))
         setCurrPage(value);
-
     };
+
 
     //.........................................................................
 
@@ -75,7 +71,7 @@ export default function AuthorNovels() {
 
 
                 {/* THREE_____________ */}
-                {currNovels.length > 0 ? '' :
+                {novels.length > 0 ? '' :
                     < h1 className='font-mono text-5xl text-white text-center mt-20 mb-16'>
                         - There is No Novels <i className="fa-regular fa-face-sad-tear mt-1"></i> -
                     </h1>
@@ -83,7 +79,7 @@ export default function AuthorNovels() {
                 <div className='grid grid-cols-2 p-5 gap-2'>
 
                     {
-                        currNovels.map((item, index) => (
+                        novels.map((item, index) => (
 
                             <div key={item._id}>
                                 {/* -------------------NOVEL CARD---------------------------- */}

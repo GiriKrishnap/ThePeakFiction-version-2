@@ -23,7 +23,7 @@ const configFormData = {
 
 //user-Apis
 export const getRandomNovelAPI = () => axios.get('/getRandom', config);
-export const getAllNovelsForUsersAPI = () => axios.get('/getAllNovels-user', config);
+export const getAllNovelsForUsersAPI = (pageNumber) => axios.get(`/getAllNovels-user?page=${pageNumber}`, config);
 export const getAllGenresAPI = () => axios.get('/admin/getAllGenres', config);
 
 export const getNovelDetailsWithIdAPI = (id) => axios.get(`/novelWithId/${id}`, config);
@@ -31,7 +31,7 @@ export const getChapterAPI = (id, number, userId) =>
     axios.get(`/getChapter?novelId=${id}&chapterNumber=${number}&userId=${userId}`, config);
 
 export const getMostViewedNovelsAPI = (url) => axios.get(url, config);
-export const gridePostAPI = (url) => axios.get(`${url}?userId=${userId}`, config);
+export const gridePostAPI = (url, pageNumber) => axios.get(`${url}?userId=${userId}&page=${pageNumber}`, config);
 export const getWalletAPI = () => axios.get(`/getWallet?userId=${userId}`, config);
 export const checkGCoinSystemAPI = (novelId) => axios.get(`/check-GCoinSystem?NovelId=${novelId}`, config);
 export const checkPayToReadAPI = (novelId, chapterNo, userId) =>
@@ -44,7 +44,7 @@ export const userSignUpPostAPI = (body) => axios.post('/signup', body, config);
 export const verifyOtpPostAPI = (body) => axios.post('/verifyUserOtp', body, config);
 export const resendOtpAPI = (email) => axios.post('/resend-otp', { email }, config);
 
-export const getFilteredNovelsAPI = (body) => axios.post('/filterNovels-user', body, config);
+export const getFilteredNovelsAPI = (body, pageNumber) => axios.post(`/filterNovels-user?page=${pageNumber}`, body, config);
 export const RatingPostAPI = (body) => axios.post('/rateNovel', body, config);
 export const addNovelToLibraryAPI = (novelId) => axios.post('/add-To-library', { novelId, userId }, config);
 export const newMessagePostAPI = (body) => axios.post('/send-message', body, config);
@@ -57,7 +57,7 @@ export const joinCommunityAPI = (body) => axios.post('/join-community', body, co
 //...............................................................................................
 
 //AUTHOR
-export const getAuthorNovelsAPI = () => axios.get(`/author/getAuthorNovels/${userId}`, config);
+export const getAuthorNovelsAPI = (pageNumber) => axios.get(`/author/getAuthorNovels/${userId}?page=${pageNumber}`, config);
 export const authorGetGenresAPI = () => axios.get('/author/getGenres', config);
 export const getChapterEditDetailsAPI = (novelId, chapterId) =>
     axios.get(`/author/edit-chapter-details?novelId=${novelId}&chapterId=${chapterId}`, config);

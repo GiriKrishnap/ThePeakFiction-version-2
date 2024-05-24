@@ -65,9 +65,19 @@ module.exports = {
     getAllAuthorNovels: async (req, res) => {
         try {
             const authorId = req.params.id;
+            const page = req.query.page;
+            const queryFilter = { author_id: authorId }
 
-            const novels = await NovelModel.find({ author_id: authorId }).sort({ publish_date: -1 }).populate('genre');
-            res.json({ status: true, novels })
+            const novels = await NovelModel.find(queryFilter)
+                .sort({ publish_date: -1 })
+                .populate('genre')
+                .skip((page - 1) * 6)
+                .limit(6);
+
+            const totalNovels = await NovelModel.countDocuments(queryFilter);
+
+
+            res.json({ status: true, novels, totalNovels })
 
 
         } catch (error) {

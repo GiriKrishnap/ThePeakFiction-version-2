@@ -16,8 +16,14 @@ module.exports = {
     getMostViewed: async (req, res) => {
         try {
 
-            const novels = await NovelModel.find({ status: { $nin: ["pending", "rejected"] }, is_hide: false })
-                .sort({ 'views': -1 });
+            const queryFilter = {
+                status: { $nin: ["pending", "rejected"] },
+                is_hide: false
+            };
+
+            const novels = await NovelModel.find(queryFilter)
+                .sort({ 'views': -1 })
+                .limit(10)
 
             if (novels) {
 
@@ -35,18 +41,24 @@ module.exports = {
 
     getTrending: async (req, res) => {
         try {
-            const novels = await NovelModel.find({
+            const page = req.query.page;
+            const queryFilter = {
                 status: { $nin: ["pending", "rejected"] },
                 is_hide: false,
                 chapter_count: { $gte: 1 }
-            })
+            };
+
+            const novels = await NovelModel.find(queryFilter)
                 .populate('author_id')
                 .populate('genre')
                 .sort({ 'in_library': -1 })
+                .skip((page - 1) * 6)
+                .limit(6);
+
+            const totalNovels = await NovelModel.countDocuments(queryFilter);
 
             if (novels) {
-
-                res.json({ status: true, novels });
+                res.json({ status: true, novels, totalNovels });
             }
 
         } catch (error) {
@@ -60,19 +72,27 @@ module.exports = {
 
     getNewUpdated: async (req, res) => {
         try {
-            const novels = await NovelModel.find({
+
+            const page = req.query.page;
+
+            const queryFilter = {
                 status: { $nin: ["pending", "rejected"] },
                 is_hide: false,
                 chapter_count: { $gte: 1 }
-            })
+            };
+
+            const novels = await NovelModel.find(queryFilter)
                 .populate('author_id')
                 .populate('genre')
                 .sort({ 'updated_date': -1 })
+                .skip((page - 1) * 6)
+                .limit(6);
 
-            if (novels) {
+            const totalNovels = await NovelModel.countDocuments(queryFilter);
 
-                res.json({ status: true, novels });
-            }
+            res.json({ status: true, novels, totalNovels });
+
+
         } catch (error) {
 
             res.status(400).json({ status: false, message: 'catch Error :: getNewUpdated' })
@@ -119,14 +139,25 @@ module.exports = {
     getAllNovels: async (req, res) => {
         try {
 
-            const novels = await NovelModel.find({ status: { $nin: ["pending", "rejected"] }, is_hide: false })
+            const page = req.query.page;
+
+            const queryFilter = {
+                status: { $nin: ["pending", "rejected"] },
+                is_hide: false,
+            };
+
+            const novels = await NovelModel.find(queryFilter)
                 .sort({ 'views': -1 })
                 .populate('genre')
-                .populate('author_id');
+                .populate('author_id')
+                .skip((page - 1) * 6)
+                .limit(6);
+
+            const totalNovels = await NovelModel.countDocuments(queryFilter);
 
             if (novels) {
 
-                res.json({ status: true, novels });
+                res.json({ status: true, novels, totalNovels });
             } else {
 
                 res.json({ status: false });
@@ -149,7 +180,8 @@ module.exports = {
             const year = req.body.selectedYear
             const status = req.body.selectedStatus
             const search = req.body.search
-
+            const page = req.query.page;
+            console.log('page is here - ', page);
 
             const sortObject = {};
             if (sort === 'title') {
@@ -174,12 +206,16 @@ module.exports = {
 
 
             const novels = await NovelModel.find(query)
-                .sort(sortObject)
                 .populate('genre')
                 .populate('author_id')
+                .skip((page - 1) * 6)
+                .limit(6)
+                .sort(sortObject).collation({ locale: "en", caseLevel: true })
+
+            const totalNovels = await NovelModel.countDocuments(query);
 
 
-            res.json({ status: true, novels });
+            res.json({ status: true, novels, totalNovels });
 
 
         } catch (error) {
@@ -304,20 +340,24 @@ module.exports = {
         try {
 
             const { userId } = req.query;
-
+            const page = req.query.page;
 
             const userLibrary = await UserModel.findOne({ _id: userId }, { _id: 0, library: 1 })
                 .populate({
                     path: 'library',
                     populate: { path: 'author_id genre' }
                 })
+                .skip((page - 1) * 6)
+                .limit(6);
+
+            const totalNovels = await UserModel.countDocuments({ _id: userId }, { _id: 0, library: 1 });
 
 
             if (!userLibrary) {
                 res.json({ status: false, message: 'user not found' });
             }
 
-            res.json({ status: true, novels: userLibrary.library });
+            res.json({ status: true, novels: userLibrary.library, totalNovels });
 
         } catch (error) {
             res.status(400).json({ status: false, message: 'server catch error :: getLibraryNovels' });

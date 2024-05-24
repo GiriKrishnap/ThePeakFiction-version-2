@@ -16,29 +16,37 @@ export default function Filter() {
     //.........................................................................
 
     const [novels, setNovels] = useState([]);
-    const [currNovels, setCurrNovels] = useState([]);
     const [allGenre, setAllGenre] = useState([]);
     const [search, setSearch] = useState('');
     const [pageNumber, setPageNumber] = useState([]);
+    const [currPage, setCurrPage] = useState(1);
     const [showGenre, setShowGenre] = useState(false);
+    const [filterOn, setFilerOn] = useState(false);
 
     //.........................................................................
 
     useEffect(() => {
         getAllGenres();
-        getAllNovels();
     }, [])
+
+    useEffect(() => {
+        if (!filterOn) {
+            getAllNovels();
+        } else {
+            handleFilter()
+        }
+    }, [currPage])
 
     //.........................................................................
 
     const getAllNovels = async () => {
         try {
 
-            const response = await getAllNovelsForUsersAPI();
+            const response = await getAllNovelsForUsersAPI(currPage);
             if (response.data.status) {
                 setNovels(response.data.novels)
-                setCurrNovels(response.data.novels.slice(0, 6))
-                setPageNumber(Math.ceil(response.data.novels.length / 6))
+                setPageNumber(Math.ceil(response.data.totalNovels / 6));
+                setFilerOn(false);
             }
 
         } catch (error) {
@@ -97,12 +105,12 @@ export default function Filter() {
                 search
             })
 
-            const response = await getFilteredNovelsAPI(body);
+            const response = await getFilteredNovelsAPI(body, currPage);
 
             if (response.data.status) {
-                setNovels(response.data.novels);
-                setCurrNovels(response.data.novels.slice(0, 6))
-                setPageNumber(Math.ceil(response.data.novels.length / 6))
+                setNovels(response.data.novels)
+                setPageNumber(Math.ceil(response.data.totalNovels / 6));
+                setFilerOn(true);
             }
 
         } catch (error) {
@@ -122,13 +130,8 @@ export default function Filter() {
 
     //.........................................................................
 
-    const [currPage, setCurrPage] = useState(1);
-
     const handleChange = (event, value) => {
-
-        setCurrNovels(novels.slice((value - 1) * 6, value * 6))
         setCurrPage(value);
-
     };
 
     //.........................................................................
@@ -253,7 +256,7 @@ export default function Filter() {
                 <div className='grid grid-cols-2 p-5 gap-2'>
 
                     {
-                        currNovels.map((item, index) => (
+                        novels.map((item, index) => (
 
                             <div key={item._id}>
                                 {/* -------------------NOVEL CARD---------------------------- */}
