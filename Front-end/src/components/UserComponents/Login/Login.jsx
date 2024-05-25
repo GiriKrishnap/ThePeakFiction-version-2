@@ -63,8 +63,8 @@ export default function Login() {
 
     //.........................................................................
 
-    const [email, setEmail] = useState('');
-    const [password, SetPassword] = useState('');
+    const [email, setEmail] = useState('katokem540@lucvu.com');
+    const [password, SetPassword] = useState('login');
 
     //.........................................................................
 
