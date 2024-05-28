@@ -18,7 +18,7 @@ export default function Filter() {
     const [novels, setNovels] = useState([]);
     const [allGenre, setAllGenre] = useState([]);
     const [search, setSearch] = useState('');
-    const [pageNumber, setPageNumber] = useState([]);
+    const [pageNumber, setPageNumber] = useState();
     const [currPage, setCurrPage] = useState(1);
     const [showGenre, setShowGenre] = useState(false);
     const [filterOn, setFilerOn] = useState(false);

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import './Login.css'
 import { Link, useNavigate } from 'react-router-dom';
-import { Signup, VerifyOptPageUrl, readerHome } from '../../../util/constants';
+import { signup, verifyOptPageUrl, readerHome } from '../../../util/constants';
 import toast from 'react-hot-toast';
 import axios from '../../../util/axios'
 //.........................................................................
@@ -41,7 +41,7 @@ export default function Login() {
                 },
             })
 
-            navigate(`${VerifyOptPageUrl}?email=${email}`);
+            navigate(`${verifyOptPageUrl}?email=${email}`);
 
         } else {
 
@@ -120,7 +120,7 @@ export default function Login() {
                             },
                         })
 
-                        navigate(`${VerifyOptPageUrl}?email=${email}`);
+                        navigate(`${verifyOptPageUrl}?email=${email}`);
 
                     } else {
 
@@ -223,7 +223,7 @@ export default function Login() {
                         <i className="fa-brands fa-lg fa-google mr-2"></i>Login with google
                     </button>
 
-                    <Link to={Signup}> <p className='font-mono tracking-widest text-lg mt-5
+                    <Link to={signup}> <p className='font-mono tracking-widest text-lg mt-5
                     hover:text-blue-500'>No Account?</p> </Link>
 
                 </div>

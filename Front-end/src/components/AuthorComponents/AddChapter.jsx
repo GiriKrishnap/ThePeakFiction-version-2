@@ -2,7 +2,7 @@ import toast from 'react-hot-toast';
 import React, { useEffect, useState } from 'react'
 import { authorAddChapterAPI, paymentEligibleCheckAPI } from '../../APIs/userAPI';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { AuthorNovelDetails, Signup } from '../../util/constants';
+import { authorNovelDetails, signup } from '../../util/constants';
 //.........................................................................
 
 
@@ -28,7 +28,7 @@ export default function AuthorCreate() {
 
         if (!user?.isAuthor) {
 
-            navigate(Signup);
+            navigate(signup);
 
         } else {
 
@@ -67,7 +67,7 @@ export default function AuthorCreate() {
             if (response.data.status) {
 
                 toast.success(response.data.message);
-                navigate(`${AuthorNovelDetails}?NovelId=${NovelId}`, { replace: true })
+                navigate(`${authorNovelDetails}?NovelId=${NovelId}`, { replace: true })
 
             } else {
                 toast.error(response.data.message);
@@ -210,7 +210,7 @@ export default function AuthorCreate() {
                     <button type="submit" className="text-white bg-red-500 hover:bg-red-600 mt-5
                       focus:ring-blue-300 font-medium rounded-lg text-sm w-full px-5
                       py-2.5 text-center"
-                        onClick={() => navigate(`${AuthorNovelDetails}?NovelId=${NovelId}`, { replace: true })}>
+                        onClick={() => navigate(`${authorNovelDetails}?NovelId=${NovelId}`, { replace: true })}>
                         Cancel
                     </button>
                     {/* ----------BUTTONS END----------------------- */}

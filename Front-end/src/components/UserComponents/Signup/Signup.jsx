@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Login, VerifyOptPageUrl } from '../../../util/constants';
+import { login, verifyOptPageUrl } from '../../../util/constants';
 import { Link, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { userSignUpPostAPI } from '../../../APIs/userAPI';
@@ -56,7 +56,7 @@ export default function Signup() {
                     },
                 })
 
-                navigate(`${VerifyOptPageUrl}?email=${email}`);
+                navigate(`${verifyOptPageUrl}?email=${email}`);
 
 
             } else if (response.data.need_verify) {
@@ -69,7 +69,7 @@ export default function Signup() {
                     },
                 })
 
-                navigate(`${VerifyOptPageUrl}?email=${email}`);
+                navigate(`${verifyOptPageUrl}?email=${email}`);
 
             } else {
 
@@ -145,7 +145,7 @@ export default function Signup() {
 
         
 
-                    <Link to={Login}> <p className='font-mono tracking-widest text-lg
+                    <Link to={login}> <p className='font-mono tracking-widest text-lg
                     hover:text-blue-500 mt-3'>You Have Account?</p> </Link>
 
                 </div>

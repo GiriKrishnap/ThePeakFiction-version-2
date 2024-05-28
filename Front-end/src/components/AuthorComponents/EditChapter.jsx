@@ -2,7 +2,7 @@ import toast from 'react-hot-toast';
 import React, { useEffect, useState } from 'react'
 import { PostEditChapterAPI, authorAddChapterAPI, getChapterEditDetailsAPI } from '../../APIs/userAPI';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { AuthorNovelDetails, Signup } from '../../util/constants';
+import { authorNovelDetails, signup } from '../../util/constants';
 //.........................................................................
 
 
@@ -14,7 +14,6 @@ export default function EditChapter() {
     //STATES...................................................................
 
     const [NovelId, setNovelId] = useState('');
-    const [chapterId, setChapterId] = useState('');
     const [title, setTitle] = useState('');
     const [content, setContent] = useState(``);
 
@@ -27,7 +26,7 @@ export default function EditChapter() {
 
         if (!user?.isAuthor) {
 
-            navigate(Signup);
+            navigate(signup);
 
         } else {
 
@@ -39,7 +38,6 @@ export default function EditChapter() {
                 navigate(-1)
             } else {
                 setNovelId(NovelIdQuery);
-                setChapterId(ChapterIdQuery);
                 getChapterDetails(NovelIdQuery, ChapterIdQuery);
             }
         }
@@ -86,7 +84,7 @@ export default function EditChapter() {
             if (response.data.status) {
 
                 toast.success("Chapter Edited");
-                navigate(`${AuthorNovelDetails}?NovelId=${NovelId}`, { replace: true });
+                navigate(`${authorNovelDetails}?NovelId=${NovelId}`, { replace: true });
 
             } else {
                 toast.error(response.data.message);

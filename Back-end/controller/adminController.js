@@ -137,34 +137,6 @@ module.exports = {
     },
 
     ///---------------------------
-    getImage: async (req, res) => {
-        try {
-
-            const { id } = req.params;
-
-            if (id) {
-
-                const image = await cloudinary.api.resource(id, { resource_type: 'image' });
-                if (image.secure_url) {
-                    console.log('got the image: ', image.secure_url);
-                    res.json({ imageUrl: image.secure_url })
-
-                } else {
-                    console.log('there is a error in getting image :: adminController')
-                    res.json({ status: false })
-                }
-
-            } else {
-                res.json({ status: false })
-            }
-
-        } catch (error) {
-            res.status(400).json({ status: false })
-            console.log('catch error on :: getImage ' + error.message);
-        }
-    },
-
-    ///---------------------------
     getAllNovels: async (req, res) => {
         try {
 

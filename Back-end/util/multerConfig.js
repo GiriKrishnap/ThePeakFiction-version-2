@@ -43,10 +43,7 @@ const path = require('path');
 // Set up multer for handling file uploads
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        console.log('multer cover - ', req.body.cover);
-        if (!req.body.cover) {
             cb(null, path.join(__dirname, '../public/novelCovers'));
-        }
     },
     filename: function (req, file, cb) {
         if (!req.body.cover) {

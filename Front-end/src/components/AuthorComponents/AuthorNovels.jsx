@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Signup, authorNovelDetailed } from '../../util/constants';
+import { signup, authorNovelDetails } from '../../util/constants';
 import { useNavigate } from 'react-router-dom'
 import { getAuthorNovelsAPI } from '../../APIs/userAPI';
 import toast from 'react-hot-toast';
@@ -10,7 +10,7 @@ export default function AuthorNovels() {
     const navigate = useNavigate();
 
     const [novels, setNovels] = useState([]);
-    const [pageNumber, setPageNumber] = useState([]);
+    const [pageNumber, setPageNumber] = useState();
     const [currPage, setCurrPage] = useState(1);
 
     //.........................................................................
@@ -20,7 +20,7 @@ export default function AuthorNovels() {
         const user = JSON.parse(localStorage.getItem('user-login'))
 
         if (!user?.isAuthor) {
-            navigate(Signup);
+            navigate(signup);
         } else {
 
             (async () => {
@@ -43,7 +43,7 @@ export default function AuthorNovels() {
 
     const handleClick = async (novelId) => {
 
-        navigate(`${authorNovelDetailed}?NovelId=${novelId}`, { replace: true });
+        navigate(`${authorNovelDetails}?NovelId=${novelId}`, { replace: true });
 
     }
 

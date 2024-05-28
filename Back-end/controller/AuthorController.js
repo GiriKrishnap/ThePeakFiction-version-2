@@ -206,7 +206,7 @@ module.exports = {
     chapterEditDetails: async (req, res) => {
         try {
 
-            const { novelId, chapterId } = req.query
+            const { novelId, chapterId } = req.params
 
             const chapter = await NovelModel.findOne(
                 { _id: novelId, "chapters._id": chapterId },

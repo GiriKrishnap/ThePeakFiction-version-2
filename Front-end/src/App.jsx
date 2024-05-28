@@ -8,10 +8,11 @@ import Loading from './components/loading';
 //LINKS.........................................................................................
 
 import {
-  AuthorNovelDetails, Login, PayToReadPageUrl, PaymentSuccessURL, Signup, VerifyOptPageUrl, adminAuthorManagement,
-  adminDashboard, adminGenreManagement, adminLogin, adminNovelManagement, adminUserManagement, AuthorAddChapter,
+  authorNovelDetails, login, payToReadPageUrl, signup, verifyOptPageUrl, adminAuthorManagement,
+  adminDashboard, adminGenreManagement, adminLogin, adminNovelManagement, adminUserManagement, authorAddChapter,
   authorCreate, authorHome, authorNovels, chatPageUrl, communityPageUrl, filter, getUpdatedUrl, trendingUrl,
-  myLibraryUrl, newPasswordUrl, novelDetailedView, profileUrl, readNovel, readerHome, AuthorEditChapter, AuthorEditNovel,
+  myLibraryUrl, newPasswordUrl, novelDetailedView, profileUrl, readNovel, readerHome, authorEditChapter, authorEditNovel,
+  paymentSuccessUrl,
 } from './util/constants';
 
 
@@ -73,32 +74,32 @@ function App() {
           <Routes>
 
             {/* UserPart */}
-            <Route exact path={Login} element={<LoginPage />} />
-            <Route exact path={Signup} element={<SignupPage />} />
+            <Route exact path={login} element={<LoginPage />} />
+            <Route exact path={signup} element={<SignupPage />} />
             <Route exact path={readerHome} element={<ReaderHomePage />} />
             <Route exact path={filter} element={<FilterNovelsPage />} />
             <Route exact path={novelDetailedView} element={<NovelDetailedPage />} />
             <Route exact path={readNovel} element={<ReadNovel />} />
             <Route exact path={profileUrl} element={<ProfilePage />} />
-            <Route exact path={PaymentSuccessURL} element={<PaymentSuccessPage />} />
+            <Route exact path={paymentSuccessUrl} element={<PaymentSuccessPage />} />
             <Route exact path={getUpdatedUrl} element={<UpdatedPage />} />
             <Route exact path={trendingUrl} element={<TrendingPage />} />
             <Route exact path={myLibraryUrl} element={<LibraryPage />} />
             <Route exact path={communityPageUrl} element={<CommunityPage />} />
             <Route exact path={chatPageUrl} element={<ChatPage />} />
-            <Route exact path={VerifyOptPageUrl} element={<VerifyOptPage />} />
+            <Route exact path={verifyOptPageUrl} element={<VerifyOptPage />} />
             <Route exact path={newPasswordUrl} element={<NewPasswordPage />} />
-            <Route exact path={PayToReadPageUrl} element={<PayToReadPage />} />
+            <Route exact path={payToReadPageUrl} element={<PayToReadPage />} />
 
 
             {/* AuthorPart */}
             <Route exact path={authorHome} element={<AuthorHomePage />} />
             <Route exact path={authorCreate} element={<AuthorCreatePage />} />
             <Route exact path={authorNovels} element={<AuthorNovelPage />} />
-            <Route exact path={AuthorNovelDetails} element={<AuthorNovelDetailPage />} />
-            <Route exact path={AuthorAddChapter} element={<AuthorAddChapterPage />} />
-            <Route exact path={AuthorEditChapter} element={<EditChapterPage />} />
-            <Route exact path={AuthorEditNovel} element={<EditNovelPage />} />
+            <Route exact path={authorNovelDetails} element={<AuthorNovelDetailPage />} />
+            <Route exact path={authorAddChapter} element={<AuthorAddChapterPage />} />
+            <Route exact path={authorEditChapter} element={<EditChapterPage />} />
+            <Route exact path={authorEditNovel} element={<EditNovelPage />} />
 
 
             {/* AdminPart */}

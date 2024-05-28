@@ -1,7 +1,7 @@
 import toast from 'react-hot-toast';
 import React, { useEffect, useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { authorHome, authorNovels, Login } from '../../util/constants';
+import { authorHome, authorNovels, login } from '../../util/constants';
 import { authorGetGenresAPI, authorNovelEditAPI, getNovelDetailByIdAPI } from '../../APIs/userAPI';
 //.........................................................................
 
@@ -34,7 +34,7 @@ export default function EditNovel() {
         const novelId = queryParams.get('novelId');
 
         if (!user?.isAuthor) {
-            navigate(Login);
+            navigate(login);
         } if (!novelId) {
             navigate(-1)
         } else {
@@ -128,21 +128,15 @@ export default function EditNovel() {
         formData.append('novelId', novelId);
 
         try {
-
             const response = await authorNovelEditAPI(novelId, title, formData);
-
             if (response.data.status) {
 
                 toast.success(response.data.message);
                 navigate(authorNovels);
 
             } else {
-
                 toast.error(response.data.message);
             }
-
-
-
         } catch (error) {
             console.error('Error uploading Novel:', error);
             toast.error(error.message);
@@ -153,7 +147,7 @@ export default function EditNovel() {
 
     return (
         <>
-            <div className='m-6 md:m-16 bg-gray-600 p-16 rounded-2xl hover:shadow-2xl'>
+            <div className='m-2 md:m-16 bg-gray-600 md:p-16 p-5 rounded-2xl hover:shadow-2xl'>
 
                 <form className="max-w-2xl mx-auto bg-gray-600" onSubmit={handleSubmit}>
 
@@ -183,9 +177,12 @@ export default function EditNovel() {
 
                     {
                         selectedGenre.map((item) => (
-                            <p className='inline p-0.5 ml-3 bg-blue-600 text-white rounded-md'>{item.name}</p>
+                            <p className='inline p-0.5 ml-3 bg-blue-600 text-white rounded-md'
+                                key={item._id}>{item.name}</p>
                         ))
-                    } <p className='inline text-gray-200 font-mono '> - Old Genres</p>
+                    }
+
+                    <p className='inline text-gray-200 font-mono '> - Old Genres</p>
                     <div className='grid md:grid-cols-5 gap-2 grid-cols-2 mt-6'>
                         <p className=' text-gray-200 font-mono'> Select new - </p>
                         {
@@ -208,13 +205,18 @@ export default function EditNovel() {
                     <label className="block mb-2 mt-4 text-sm font-medium text-gray-900 dark:text-white">Upload Cover</label>
 
                     <div className="flex items-center justify-center w-full">
-                        <label for="dropzone-file" className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+                        <label htmlFor="dropzone-file" className="flex justify-center h-72 w-full p-3 md:h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
                             <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                                <svg className="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
+                                <svg className="md:w-8 md:h-8 h-5 w-5 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+                                    <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
                                 </svg>
-                                <p className="mb-2 text-sm text-gray-500 dark:text-gray-400"><span className="font-semibold">Click to upload</span> or drag and drop</p>
-                                <p className="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
+                                <p className="mb-2 md:text-md font-mono text-sm text-gray-500 dark:text-gray-400">
+                                    Click to upload
+                                    <span className="md:inline hidden"> or drag and drop</span >
+                                </p>
+                                <p className="text-xs text-gray-500 dark:text-gray-400 font-mono">
+                                    PNG or JPG (MAX. 800x400px)
+                                </p>
                             </div>
                             <input id="dropzone-file" type="file" className="hidden" onChange={handleCoverChange} />
                         </label>
@@ -229,12 +231,13 @@ export default function EditNovel() {
                         {!coverPreview && (
                             <div>
 
-                                <div className='w-52 h-64 rounded-lg content-center overflow-hidden text-white font-mono p-2
+                                <div className='md:w-52 md:h-64 w-36 h-72 rounded-lg content-center overflow-hidden text-white font-mono p-2
                                  shadow-black'
                                     style={novelId ?
                                         {
                                             backgroundImage: `url(${coverUrl})`,
-                                            backgroundSize: 'cover'
+                                            backgroundSize: 'cover',
+                                            backgroundPosition: 'center'
                                         } : {}}
                                 ><p className='shadow-black shadow-md inline p-0.5 bg-blue-500 bg-opacity-75'>Old Cover</p></div>
                             </div>

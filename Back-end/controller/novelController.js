@@ -254,7 +254,7 @@ module.exports = {
     getChapter: async (req, res) => {
         try {
 
-            const { novelId, chapterNumber, userId } = req.query
+            const { novelId, chapterNumber, userId } = req.params
 
             if (novelId) {
 
@@ -423,7 +423,7 @@ module.exports = {
     checkPayToRead: async (req, res) => {
         try {
 
-            const { novelId, chapterNo, userId } = req.query
+            const { novelId, chapterNo, userId } = req.params
 
             const walletData = await WalletModel.findOne({ user_id: userId });
 

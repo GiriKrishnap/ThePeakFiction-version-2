@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
-import { Signup, authorCreate, authorNovels } from '../../util/constants';
+import { signup, authorCreate, authorNovels } from '../../util/constants';
 //.........................................................................
 
 
@@ -16,7 +16,7 @@ export default function AuthorHome() {
     useEffect(() => {
         const user = JSON.parse(localStorage.getItem('user-login'))
         if (!user?.isAuthor) {
-            navigate(Signup);
+            navigate(signup);
         }
     }, []);
 

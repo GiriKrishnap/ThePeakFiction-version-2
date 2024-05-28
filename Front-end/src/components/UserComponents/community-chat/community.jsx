@@ -73,14 +73,7 @@ export default function Community() {
                                     key={item.name}
                                     onClick={() => handleCommunityClick(item.novel_id)}>
 
-                                    <div
-                                        className='w-24 rounded-r-full shadow-xl'
-                                        style={{
-                                            backgroundImage: `url(${item.cover})`,
-                                            backgroundSize: 'cover'
-                                        }} />
-
-                                    <div className='flex flex-col place-content-center ml-2'>
+                                    <div className='flex flex-col place-content-center ml-10'>
                                         <p className='text-sm md:text-2xl'>{item.name}</p>
                                         <p className='text-xs md:text-sm font-mono text-gray-400 ml-1'>
                                             official Community

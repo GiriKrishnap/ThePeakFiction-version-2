@@ -17,7 +17,7 @@ export default function GridPost({ axiosUrl, title, home = false }) {
     //.........................................................................
 
     const [novels, setNovels] = useState([]);
-    const [pageNumber, setPageNumber] = useState([]);
+    const [pageNumber, setPageNumber] = useState();
     const [currPage, setCurrPage] = useState(1);
 
     //.........................................................................
@@ -75,9 +75,9 @@ export default function GridPost({ axiosUrl, title, home = false }) {
                                 {/* -------------------NOVEL CARD---------------------------- */}
                                 <div
                                     className='__CARD__  bg-gray-700 
-                                   hover:bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-gray-600
-                                   via-gray-700 to-gray-800 lg:h-64 min-h-full rounded-lg md:flex overflow-hidden
-                                   md:pb-0 pb-4'
+                               hover:bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-gray-600
+                               via-gray-700 to-gray-800 lg:h-64 min-h-full rounded-lg md:flex overflow-hidden
+                               md:pb-0 pb-4'
                                     onClick={() => handleClick(item._id)}>
 
                                     <div className='md:w-1/2 h-32 md:h-full hover:scale-105 duration-500 BANNER_PHOTO'
@@ -90,7 +90,7 @@ export default function GridPost({ axiosUrl, title, home = false }) {
 
                                         <div className='text-right'>
                                             <p className='text-white poppins text-right text-lg bg-red-500 
-                                             inline drop-shadow-md p-2 rounded-b-lg'
+                                         inline drop-shadow-md p-2 rounded-b-lg'
                                             >{item.rate}</p>
                                         </div>
 
@@ -102,7 +102,7 @@ export default function GridPost({ axiosUrl, title, home = false }) {
                                         <div className='md:grid grid-flow-col gap-2 mt-2 '>
 
                                             <small className='bg-blue-700 m-0.5 pr-2 pl-2 p-0.5 text-gray-200 
-                                                rounded-xl cursor-default font-mono float-left'>
+                                            rounded-xl cursor-default font-mono float-left'>
                                                 Author: {item?.author_id?.userName} </small>
 
                                             {
@@ -110,7 +110,7 @@ export default function GridPost({ axiosUrl, title, home = false }) {
 
                                                     <small key={genre.name}
                                                         className={`bg-blue-500 pr-2 pl-2 p-0.5 text-gray-200 float-left m-0.5
-                                                rounded-xl cursor-default ${index > 4 ? 'md:hidden' : ''}`}> {genre.name} </small>
+                                            rounded-xl cursor-default ${index > 4 ? 'md:hidden' : ''}`}> {genre.name} </small>
                                                 ))
                                             }
 
@@ -122,7 +122,7 @@ export default function GridPost({ axiosUrl, title, home = false }) {
                                             {
                                                 item.chapters[item.chapters.length - 1]?.title ?
                                                     < div className='bg-gray-600 pr-3 pl-3 text-gray-300 
-                                                     rounded-full cursor-default grid grid-cols-2'>
+                                                 rounded-full cursor-default grid grid-cols-2'>
                                                         <p className='text-start'>
                                                             chapter {item.chapters[item.chapters.length - 1]?.number}
                                                         </p>
@@ -137,7 +137,7 @@ export default function GridPost({ axiosUrl, title, home = false }) {
                                             {
                                                 item.chapters[item.chapters.length - 2]?.title ?
                                                     < div className='bg-gray-600 pr-3 pl-3 text-gray-300 
-                                                          rounded-full cursor-default grid grid-cols-2'>
+                                                      rounded-full cursor-default grid grid-cols-2'>
                                                         <p className='text-start'>
                                                             chapter {item.chapters[item.chapters.length - 2]?.number}
                                                         </p>
@@ -152,7 +152,7 @@ export default function GridPost({ axiosUrl, title, home = false }) {
                                             {
                                                 item.chapters[item.chapters.length - 3]?.title ?
                                                     < div className='bg-gray-600 pr-3 pl-3 text-gray-300 
-                                                          rounded-full cursor-default grid grid-cols-2'>
+                                                      rounded-full cursor-default grid grid-cols-2'>
                                                         <p className='text-start'>
                                                             chapter {item.chapters[item.chapters.length - 3]?.number}
                                                         </p>
@@ -167,7 +167,7 @@ export default function GridPost({ axiosUrl, title, home = false }) {
                                             {
                                                 item.chapters[item.chapters.length - 4]?.title ?
                                                     < div className='bg-gray-600 pr-3 pl-3 text-gray-300 hidden
-                                                          rounded-full cursor-default md:grid grid-cols-2'>
+                                                      rounded-full cursor-default md:grid grid-cols-2'>
                                                         <p className='text-start'>
                                                             chapter {item.chapters[item.chapters.length - 4]?.number}
                                                         </p>
@@ -183,8 +183,8 @@ export default function GridPost({ axiosUrl, title, home = false }) {
                                         {
                                             item.chapters.length <= 0 ?
                                                 <div className='bg-gray-600 text-red-300 md:text-gray-300 mt-2 float-left
-                                                md:float-none md:rounded-3xl rounded-md p-1 cursor-default font-mono md:h-full
-                                                 md:p-10 ml-2'>
+                                            md:float-none md:rounded-3xl rounded-md p-1 cursor-default font-mono md:h-full
+                                             md:p-10 ml-2'>
                                                     <p className='text-center text-xs md:text-lg'>
                                                         no chapters yet..
                                                     </p>

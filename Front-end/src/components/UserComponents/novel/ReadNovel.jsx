@@ -4,26 +4,27 @@ import { novelDetailedView, readNovel } from '../../../util/constants';
 import Comments from '../../Comments/comments';
 import { checkPayToReadAPI, getChapterAPI, } from '../../../APIs/userAPI';
 import toast from 'react-hot-toast';
+
 //.........................................................................
 
 
 export default function ReadNovel() {
 
-    //.........................................................................
+
 
     const location = useLocation();
     const navigate = useNavigate();
 
-    //.........................................................................
+
 
     const [darkMode, setDarkMode] = useState(true);
     const [chapter, setChapter] = useState('');
     const [NovelId, setNovelId] = useState('');
     const [chapterNumber, setChapterNumber] = useState(0);
     const [chapterNumber2, setChapterNumber2] = useState(0);
+    const [fontSize, setFontSize] = useState(19)
 
 
-    //.........................................................................
 
     useEffect(() => {
 
@@ -44,19 +45,16 @@ export default function ReadNovel() {
 
 
 
-    //.........................................................................
-
     const getChapterWithId = async (novelId, number) => {
         try {
 
-            const userId = JSON.parse(localStorage.getItem("user-login")).id;
-            const response = await getChapterAPI(novelId, number, userId);
+            const response = await getChapterAPI(novelId, number);
 
             if (response.data.status) {
 
                 if (response.data.chapter.gcoin > 0) {
 
-                    const responseData = await checkPayToReadAPI(novelId, number, userId);
+                    const responseData = await checkPayToReadAPI(novelId, number);
 
                     if (responseData.data.status) {
                         if (!responseData.data.paid) {
@@ -66,7 +64,6 @@ export default function ReadNovel() {
                             setChapter(response.data.chapter);
                             setChapterNumber(number)
                         }
-
                     }
 
                 } else {
@@ -107,9 +104,31 @@ export default function ReadNovel() {
 
     //.........................................................................
 
-    const handleHomeBtn = async () => {
+    const handleHomeBtn = () => {
         navigate(`${novelDetailedView}?NovelId=${NovelId}`);
     }
+
+
+    const handleFontSize = (size) => {
+        if (fontSize < 30 && size === 'INC') {
+            setFontSize(fontSize + 1);
+        } else if (fontSize > 15 && size === 'DEC') {
+            setFontSize(fontSize - 1);
+        }
+    }
+
+    const toggleFullScreen = () => {
+        if (!document.fullscreenElement) {
+            document.documentElement.requestFullscreen().catch(err => {
+                alert(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
+            });
+        } else {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            }
+        }
+    };
+
 
     //.........................................................................
 
@@ -121,7 +140,7 @@ export default function ReadNovel() {
              flex flex-col mb-1  "`}>
 
                 <div className={`${darkMode ? "bg-gray-800 " : "bg-gray-300 "} " 
-                "bg-black h-24 w-full grid rounded-b-3xl grid-cols-4  "`}>
+                "bg-black h-24 w-full grid rounded-b-3xl grid-cols-4 "`}>
 
                     <div className='bold-text flex flex-col justify-center pl-10 tracking-wide col-span-3'>
 
@@ -131,14 +150,28 @@ export default function ReadNovel() {
 
                     </div>
 
-                    <div className='flex flex-col justify-center pr-10 text-right'>
+                    <div className='flex justify-end mr-10 place-items-center md:gap-6'>
+
+                        <div className='hidden md:flex opacity-80 bg-slate-600 p-4 pl-6 pr-6 rounded-2xl hover:scale-105
+                        hover:shadow-lg shadow-black gap-3 justify-center place-items-center'>
+                            <i className="fa-solid fa-expand fa-lg hover:scale-125"
+                                onClick={toggleFullScreen}></i>
+                            <p>|</p>
+                            <i className="fa-solid fa-up-right-and-down-left-from-center fa-lg hover:scale-125"
+                                onClick={() => handleFontSize('INC')}></i>
+                            <p className='font-mono font-extrabold text-sm'>{fontSize}</p>
+                            <i className="fa-solid fa-down-left-and-up-right-to-center fa-lg hover:scale-125"
+                                onClick={() => handleFontSize('DEC')}></i>
+                        </div>
+
                         <p onClick={() => setDarkMode(!darkMode)}>
                             {
                                 darkMode ?
-                                    <i className="fa-solid fa-2xl fa-moon"></i> :
-                                    <i className="fa-solid fa-2xl fa-sun"></i>
+                                    <i className="fa-solid fa-2xl fa-moon hover:scale-125"></i> :
+                                    <i className="fa-solid fa-2xl fa-sun hover:scale-125"></i>
                             }
                         </p>
+
                     </div>
 
                 </div>
@@ -146,11 +179,10 @@ export default function ReadNovel() {
 
 
                 {/* --------------------------CONTENT------------------------------ */}
-                <div className='w-full p-10 text-xl novelFont select-none'>
+                <div className='w-full p-10 novelFont select-none' style={{ fontSize: `${fontSize}px` }}>
                     <p style={{ whiteSpace: 'pre-wrap' }}>
                         {chapter?.content}
                     </p>
-
                 </div>
                 {/* --------------------------CONTENT END------------------------------ */}
 
@@ -182,7 +214,7 @@ export default function ReadNovel() {
                     }
 
                 </div>
-                {/* --------------------------BUTTONS END------------------------------ */}
+
 
 
             </div >

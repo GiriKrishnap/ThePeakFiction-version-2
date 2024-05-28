@@ -70,7 +70,7 @@ export default function RowPost({ axiosUrl, limit = Infinity, title }) {
 
                             <div className='bg-blue-500 h-60 rounded-md 
                                     hover:m-1 hover:scale-105 duration-200 overflow-hidden'
-                                key={novel?._id}
+                                key={index}
                                 style={{
                                     backgroundImage: `url(${novel?.cover})`,
                                     backgroundSize: 'cover'

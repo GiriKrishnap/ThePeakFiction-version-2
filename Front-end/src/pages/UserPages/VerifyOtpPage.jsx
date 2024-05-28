@@ -1,5 +1,5 @@
 import  { useEffect, useState } from 'react'
-import { Login, Signup } from '../../util/constants';
+import { login, signup } from '../../util/constants';
 import { useLocation, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { resendOtpAPI, verifyOtpPostAPI } from '../../APIs/userAPI';
@@ -26,7 +26,7 @@ export default function VerifyOtp() {
         const queryParams = new URLSearchParams(location.search);
         const email = queryParams.get('email');
         if (!email) {
-            navigate(Signup);
+            navigate(signup);
         } else {
             setEmail(email);
         }
@@ -63,7 +63,7 @@ export default function VerifyOtp() {
                             color: '#fff',
                         },
                     })
-                    navigate(Login);
+                    navigate(login);
                 } else {
 
                     toast.error(response.data.message, {

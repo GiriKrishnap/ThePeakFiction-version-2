@@ -15,7 +15,7 @@ export default function PayToRead() {
 
     const navigate = useNavigate();
     const location = useLocation();
-    const socket = useMemo(() => io('https://pureglow.live'), [])
+    const socket = useMemo(() => io('https://thepeakfiction.shop'), [])
 
     //.........................................................................
 
@@ -133,7 +133,7 @@ export default function PayToRead() {
 
                     <div className="flex space-x-2 animate-pulse">
                         <div className="w-7 h-16 bg-gray-100 rounded-full"></div>
-                        <div class="w-7 h-14 bg-gray-100 rounded-full"></div>
+                        <div className="w-7 h-14 bg-gray-100 rounded-full"></div>
                         <img src="../assets/logo/webLogo.png" alt="logo" className='w-24 h-240' />
                         <div className="w-7 h-14 bg-gray-100 rounded-full"></div>
                         <div className="w-7 h-16 bg-gray-100 rounded-full"></div>

@@ -3,7 +3,7 @@ import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { Link, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
-import { Login, authorHome, filter, getUpdatedUrl, myLibraryUrl, profileUrl, trendingUrl } from '../../../util/constants';
+import { login, authorHome, filter, getUpdatedUrl, myLibraryUrl, profileUrl, trendingUrl } from '../../../util/constants';
 import { useSocket } from '../../../util/NotifySocketContext';
 
 //...........................................................................................
@@ -62,7 +62,7 @@ export default function Header({ name }) {
     useEffect(() => {
         const user = JSON.parse(localStorage.getItem('user-login'));
         if (!user) {
-            navigate(Login)
+            navigate(login)
         } else {
             setIsAuthor(user.isAuthor);
         }
@@ -206,7 +206,6 @@ export default function Header({ name }) {
                             {navigationObj.map((item) => (
                                 <Disclosure.Button
                                     key={item.name}
-                                    as="Link"
                                     onClick={() => navigate(item.link)}
                                     className={classNames(
                                         item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',

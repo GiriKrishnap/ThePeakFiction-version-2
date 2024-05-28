@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
-import { confirmPaymentURL, profileUrl } from '../../util/constants';
+import { confirmPaymentUrl, profileUrl } from '../../util/constants';
 import axios from '../../util/axios'
 import toast from 'react-hot-toast';
 //.........................................................................
@@ -22,7 +22,7 @@ function PaymentSuccess() {
                 userId
             })
 
-            const res = await axios.post(confirmPaymentURL, body, { headers: { "Content-Type": "application/json" } })
+            const res = await axios.post(confirmPaymentUrl, body, { headers: { "Content-Type": "application/json" } })
             if (res.data.status) {
                 toast.success(res.data.message);
             } else {
