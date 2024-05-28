@@ -117,10 +117,12 @@ export default function AuthorNovels() {
 
                                             {
                                                 item.genre.map((genre, index) => (
-
+                                                    index < 4 &&
                                                     <small key={genre.name}
                                                         className={`bg-blue-500 pr-2 pl-2 p-0.5 text-gray-200 float-left m-0.5
-                                                rounded-xl cursor-default ${index > 4 ? 'md:hidden' : ''}`}> {genre.name} </small>
+                                                rounded-xl cursor-default ${index > 4 ? 'md:hidden' : ''}`}>
+                                                        {genre.name}
+                                                    </small>
                                                 ))
                                             }
 
