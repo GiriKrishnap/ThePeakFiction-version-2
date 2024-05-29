@@ -147,7 +147,7 @@ export default function EditChapter() {
                       focus:ring-blue-300 font-medium rounded-lg text-sm w-full px-5
                       py-2.5 text-center">Submit</button>
 
-                    <button type="submit" className="text-white bg-red-500 hover:bg-red-600 mt-5
+                    <button type="button" className="text-white bg-red-500 hover:bg-red-600 mt-5
                       focus:ring-blue-300 font-medium rounded-lg text-sm w-full px-5
                       py-2.5 text-center"
                         onClick={() => navigate(`${AuthorNovelDetails}?NovelId=${NovelId}`, { replace: true })}>
