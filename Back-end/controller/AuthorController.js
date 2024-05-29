@@ -1,10 +1,11 @@
 const fs = require('fs');
-const schedule = require('node-schedule');
+const agenda = require('../util/agendaSchedule');
+
 //-MODELS--------------------------------------------------
 const GenreModel = require('../model/genreModel');
 const NovelModel = require('../model/novelModel')
 const CommunityModel = require('../model/communityModel');
-const cloudinary = require('../config/cloudinaryConfig')
+const cloudinary = require('../config/cloudinaryConfig');
 //---------------------------------------------------------
 module.exports = {
 
@@ -113,16 +114,16 @@ module.exports = {
             } else {
 
                 const isoDateTime = new Date(`${scheduleDate},${scheduleTime}`)
-
-                const job = schedule.scheduleJob(isoDateTime, async () => {
-                    await NovelModel.updateOne({ _id: NovelId }, {
-                        $push: { chapters: obj },
-                        $inc: { chapter_count: 1 },
-                        $set: { updated_date: currentDate }
-                    })
-                    console.log(`---JOB DONE ${title}---`);
+                await agenda.schedule(isoDateTime, 'schedule-novel', {
+                    NovelId,
+                    title,
+                    content,
+                    gcoin,
+                    chapterNumber,
+                    scheduleDate,
+                    scheduleTime,
+                    currentDate
                 });
-
                 res.json({ status: true, message: `Scheduled at ${scheduleTime} on ${scheduleDate}` })
             }
 
