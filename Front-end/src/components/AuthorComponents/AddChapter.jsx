@@ -19,6 +19,10 @@ export default function AuthorCreate() {
     const [paymentSystem, setPaymentSystem] = useState(false);
     const [gcoin, setGcoin] = useState(0);
 
+    const [isSchedule, setIsSchedule] = useState(false);
+    const [scheduleDate, setScheduleDate] = useState(null);
+    const [scheduleTime, setScheduleTime] = useState(null);
+
     //.........................................................................
 
 
@@ -51,6 +55,22 @@ export default function AuthorCreate() {
 
             e.preventDefault();
 
+            if (!content || content.length < 10 || !title) {
+                toast.error('Please Complete');
+                return
+            } else if (isSchedule && (!scheduleTime || !scheduleDate)) {
+                toast.error('Complete the Schedule!');
+                return
+            } else if (isSchedule) {
+                const currentDate = new Date();
+                const selectedDate = new Date(scheduleDate);
+
+                if (selectedDate < currentDate && selectedDate.toLocaleDateString() !== currentDate.toLocaleDateString()) {
+                    toast.error('Selected Correct Date!');
+                    return
+                }
+            }
+
             const queryParams = new URLSearchParams(location.search);
             const chapterNumber = queryParams.get('number');
 
@@ -59,7 +79,9 @@ export default function AuthorCreate() {
                 title,
                 content,
                 chapterNumber,
-                gcoin
+                gcoin,
+                scheduleDate,
+                scheduleTime
             });
 
             let response = await authorAddChapterAPI(body);
@@ -103,6 +125,16 @@ export default function AuthorCreate() {
         }
     }
 
+    //.........................................................................
+
+    const handleSetSchedule = () => {
+        if (!isSchedule) {
+            setIsSchedule(true);
+        } else {
+            setIsSchedule(false);
+            setScheduleDate(null);
+        }
+    }
 
     //.........................................................................
 
@@ -203,11 +235,37 @@ export default function AuthorCreate() {
                     }
 
                     {/* ----------BUTTONS----------------------- */}
-                    <button type="submit" className="text-white bg-blue-500 hover:bg-blue-600 mt-14
-                      focus:ring-blue-300 font-medium rounded-lg text-sm w-full px-5
-                      py-2.5 text-center">Submit</button>
+                    <div className='flex mt-10 gap-2'>
 
-                    <button type="submit" className="text-white bg-red-500 hover:bg-red-600 mt-5
+                        <button type="submit" className="text-white bg-blue-500 hover:bg-blue-600
+                      focus:ring-blue-300 font-medium rounded-lg text-sm w-full text-center">
+                            Submit
+                        </button>
+
+                        <button type="button" className={`text-white ${!isSchedule ? 'bg-blue-600 hover:bg-blue-700'
+                            : 'bg-gray-400 hover:bg-gray-500'
+                            }
+                      focus:ring-blue-300 font-medium rounded-lg text-sm w-full
+                      py-2.5 text-center`} onClick={handleSetSchedule}>
+                            {isSchedule ? 'Remove' : 'Set'} Schedule
+                        </button>
+                    </div>
+
+                    {
+                        isSchedule &&
+                        <div className='space-x-2 mt-5 justify-center place-items-center text-center'>
+
+
+                            <input type="date" className='p-2 rounded-lg bg-gray-500 text-white font-mono drop-shadow-md'
+                                onChange={(e) => setScheduleDate(e.target.value)} />
+                            <input type="time" className='p-2 rounded-lg bg-gray-500 text-white font-mono drop-shadow-md'
+                                onChange={(e) => setScheduleTime(e.target.value)} />
+
+                        </div>
+
+                    }
+
+                    <button type="button" className="text-white bg-red-500 hover:bg-red-600 mt-5
                       focus:ring-blue-300 font-medium rounded-lg text-sm w-full px-5
                       py-2.5 text-center"
                         onClick={() => navigate(`${authorNovelDetails}?NovelId=${NovelId}`, { replace: true })}>
@@ -215,7 +273,7 @@ export default function AuthorCreate() {
                     </button>
                     {/* ----------BUTTONS END----------------------- */}
 
-                </form>
+                </form >
 
             </div >
         </>

@@ -1,9 +1,9 @@
 const fs = require('fs');
+const schedule = require('node-schedule');
 //-MODELS--------------------------------------------------
 const GenreModel = require('../model/genreModel');
 const NovelModel = require('../model/novelModel')
 const CommunityModel = require('../model/communityModel');
-const novelModel = require('../model/novelModel');
 const cloudinary = require('../config/cloudinaryConfig')
 //---------------------------------------------------------
 module.exports = {
@@ -89,8 +89,7 @@ module.exports = {
     //--------------------------------------------------
     addChapter: async (req, res) => {
         try {
-            const { NovelId, title, content, gcoin, chapterNumber } = req.body;
-
+            const { NovelId, title, content, gcoin, chapterNumber, scheduleDate, scheduleTime } = req.body;
             const currentDate = new Date();
 
             const obj = {
@@ -101,13 +100,30 @@ module.exports = {
                 gcoin: gcoin || 0
             }
 
-            NovelModel.updateOne({ _id: NovelId }, {
-                $push: { chapters: obj },
-                $inc: { chapter_count: 1 },
-                $set: { updated_date: currentDate }
-            }).then(() => {
-                res.json({ status: true, message: 'created' })
-            })
+            if (!scheduleTime && !scheduleDate) {
+
+                NovelModel.updateOne({ _id: NovelId }, {
+                    $push: { chapters: obj },
+                    $inc: { chapter_count: 1 },
+                    $set: { updated_date: currentDate }
+                }).then(() => {
+                    res.json({ status: true, message: 'Created' })
+                })
+
+            } else {
+
+                const isoDateTime = new Date(`${scheduleDate},${scheduleTime}`)
+
+                const job = schedule.scheduleJob(isoDateTime, async () => {
+                    await NovelModel.updateOne({ _id: NovelId }, {
+                        $push: { chapters: obj },
+                        $inc: { chapter_count: 1 },
+                        $set: { updated_date: currentDate }
+                    })
+                })
+
+                res.json({ status: true, message: `Scheduled at ${scheduleTime} on ${scheduleDate}` })
+            }
 
         } catch (error) {
             res.status(400).json({ status: false, message: "oops catch error ::addChapter serverSide" });
