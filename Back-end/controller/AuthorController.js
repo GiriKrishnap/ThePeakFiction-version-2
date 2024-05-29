@@ -120,7 +120,8 @@ module.exports = {
                         $inc: { chapter_count: 1 },
                         $set: { updated_date: currentDate }
                     })
-                })
+                    console.log(`---JOB DONE ${title}---`);
+                });
 
                 res.json({ status: true, message: `Scheduled at ${scheduleTime} on ${scheduleDate}` })
             }
