@@ -111,8 +111,11 @@ const novelSchema = mongoose.Schema({
     //..................................
     reason: {
         type: String,
-    }
+    },
     //..................................
+    scheduled: {
+        type: String,
+    }
 })
 
 module.exports = mongoose.model('NovelsData', novelSchema);

@@ -8,18 +8,18 @@ agenda.define('schedule-novel', async (job) => {
     const { NovelId, title, content, gcoin, chapterNumber, scheduleDate, scheduleTime, currentDate } = job.attrs.data;
 
     try {
-        const obj = {
-            number: chapterNumber,
-            title,
-            content,
-            publish_date: currentDate,
-            gcoin: gcoin || 0
-        }
-
         await NovelModel.updateOne({ _id: NovelId }, {
-            $push: { chapters: obj },
+            $push: {
+                chapters: {
+                    number: chapterNumber,
+                    title,
+                    content,
+                    publish_date: currentDate,
+                    gcoin: gcoin || 0
+                }
+            },
             $inc: { chapter_count: 1 },
-            $set: { updated_date: currentDate }
+            $set: { updated_date: currentDate, scheduled: '' }
         })
 
         console.log(`Chapter scheduled at ${scheduleDate} - ${scheduleTime}`);

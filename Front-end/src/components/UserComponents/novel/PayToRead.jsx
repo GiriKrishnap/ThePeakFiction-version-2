@@ -4,7 +4,6 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { PayToReadPostAPI, checkPayToReadAPI } from '../../../APIs/userAPI';
 import toast from 'react-hot-toast';
 import { novelDetailedView, readNovel } from '../../../util/constants';
-import io from 'socket.io-client';
 
 //.........................................................................
 
@@ -15,7 +14,6 @@ export default function PayToRead() {
 
     const navigate = useNavigate();
     const location = useLocation();
-    const socket = useMemo(() => io('https://thepeakfiction.shop'), [])
 
     //.........................................................................
 
@@ -40,9 +38,6 @@ export default function PayToRead() {
             setNovelId(NovelIdQuery);
             setChapterNumber(ChapterNoQuery);
             checkDetails(NovelIdQuery, ChapterNoQuery)
-        }
-        return () => {
-            socket.disconnect();
         }
 
     }, [])
@@ -99,7 +94,6 @@ export default function PayToRead() {
                 const response = await PayToReadPostAPI(body);
                 if (response.data.status) {
                     toast.success(response.data.message);
-                    socket.emit("notification_purchase", authorId);
                     navigate(`${readNovel}?NovelId=${novelId}&number=${chapterNumber}`);
 
                 } else {

@@ -113,6 +113,10 @@ module.exports = {
 
             } else {
 
+                await NovelModel.updateOne({ _id: NovelId }, {
+                    $set: { scheduled: `Chapter scheduled for ${scheduleDate} at ${scheduleTime}` }
+                });
+
                 const isoDateTime = new Date(`${scheduleDate},${scheduleTime}`)
                 await agenda.schedule(isoDateTime, 'schedule-novel', {
                     NovelId,

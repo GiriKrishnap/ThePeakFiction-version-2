@@ -84,22 +84,6 @@ io.on("connection", (socket) => {
         console.log("Disconnected:", socket.id);
     });
 
-
-    //NOTIFICATION JOIN
-    socket.on("join_notification", (id) => {
-        console.log('the author is for notification - ', id);
-        socket.join(id);
-    });
-
-    //SEND NOTIFICATION
-    socket.on("notification_purchase", (id) => {
-        console.log('\n notification_purchase id is here - ', id)
-        const data = 'Your Novel Chapter \n Purchased by someone'
-        socket.to(id).emit("notification_received", data);
-    });
-
-
-
 });
 
 //................................................................

@@ -114,6 +114,8 @@ export default function ReadNovel() {
             setFontSize(fontSize + 1);
         } else if (fontSize > 15 && size === 'DEC') {
             setFontSize(fontSize - 1);
+        } else if ('DEF') {
+            setFontSize(19);
         }
     }
 
@@ -144,23 +146,32 @@ export default function ReadNovel() {
 
                     <div className='bold-text flex flex-col justify-center pl-10 tracking-wide col-span-3'>
 
-                        <small> <i className="fa-solid fa-book"></i> {chapter?.title}</small>
-                        <p className='md:text-2xl text-lg'>Chapter {chapter?.number} : {
-                            chapter?.title}</p>
+                        <div className='flex gap-4 place-items-center'>
+                            <i className="fa-solid fa-book text-2xl md:text-5xl"></i>
+                            <div>
+                                <p className='md:text-2xl'>
+                                    Chapter {chapter?.number} :
+                                </p>
+                                <p className='md:text-2xl'>
+                                    {chapter?.title}
+                                </p>
+                            </div>
+                        </div>
 
                     </div>
 
                     <div className='flex justify-end mr-10 place-items-center md:gap-6'>
 
                         <div className='hidden md:flex opacity-80 bg-slate-600 p-4 pl-6 pr-6 rounded-2xl hover:scale-105
-                        hover:shadow-lg shadow-black gap-3 justify-center place-items-center'>
+                        hover:shadow-lg shadow-black gap-4 justify-center place-items-center select-none'>
                             <i className="fa-solid fa-expand fa-lg hover:scale-125"
                                 onClick={toggleFullScreen}></i>
                             <p>|</p>
-                            <i className="fa-solid fa-up-right-and-down-left-from-center fa-lg hover:scale-125"
+                            <i className="fa-solid fa-up-right-and-down-left-from-center fa-lg hover:scale-125 cursor-zoom-in"
                                 onClick={() => handleFontSize('INC')}></i>
-                            <p className='font-mono font-extrabold text-sm'>{fontSize}</p>
-                            <i className="fa-solid fa-down-left-and-up-right-to-center fa-lg hover:scale-125"
+                            <p className='font-mono tracking-widest text-xl cursor-pointer'
+                                onClick={() => handleFontSize('DEF')}>{fontSize}</p>
+                            <i className="fa-solid fa-down-left-and-up-right-to-center fa-lg hover:scale-125 cursor-zoom-out"
                                 onClick={() => handleFontSize('DEC')}></i>
                         </div>
 

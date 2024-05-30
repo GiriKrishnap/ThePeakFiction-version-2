@@ -295,8 +295,8 @@ export default function Filter() {
                                                 item.genre.map((genre, index) => (
                                                     index < 4 &&
                                                     <small key={genre.name}
-                                                        className={`bg-blue-500 pr-2 pl-2 p-0.5 text-gray-200 
-                                                rounded-xl cursor-default ${index > 4 ? 'md:hidden' : ''}`}>
+                                                        className={`bg-blue-500 pr-2 pl-2 p-0.5 text-gray-200 float-left m-0.5
+                                                    rounded-xl cursor-default ${index > 4 ? 'md:hidden' : ''}`}>
                                                         {genre.name}
                                                     </small>
                                                 ))
@@ -308,77 +308,85 @@ export default function Filter() {
                                         <div className='w-full hidden md:flex flex-col gap-2 mt-2 md:mt-6 '>
 
                                             {
-                                                item.chapters[item.chapters.length - 1]?.title ?
-                                                    < div className='bg-gray-600 pr-3 pl-3 text-gray-300 
+                                                item.chapters[item.chapters.length - 1]?.title &&
+                                                < div className='bg-gray-600 pr-3 pl-3 text-gray-300 
                                                      rounded-full cursor-default grid grid-cols-2'>
-                                                        <p className='text-start'>
-                                                            chapter {item.chapters[item.chapters.length - 1]?.number}
-                                                        </p>
-                                                        <p className='text-end'>
-                                                            {new Date(item.chapters[item.chapters.length - 1]?.publish_date)
-                                                                .toLocaleDateString("en-GB")}
-                                                        </p>
-                                                    </div> : ''
+                                                    <p className='text-start'>
+                                                        chapter {item.chapters[item.chapters.length - 1]?.number}
+                                                    </p>
+                                                    <p className='text-end'>
+                                                        {new Date(item.chapters[item.chapters.length - 1]?.publish_date)
+                                                            .toLocaleDateString("en-GB")}
+                                                    </p>
+                                                </div>
 
                                             }
 
                                             {
-                                                item.chapters[item.chapters.length - 2]?.title ?
-                                                    < div className='bg-gray-600 pr-3 pl-3 text-gray-300 
+                                                item.chapters[item.chapters.length - 2]?.title &&
+                                                < div className='bg-gray-600 pr-3 pl-3 text-gray-300 
                                                           rounded-full cursor-default grid grid-cols-2'>
-                                                        <p className='text-start'>
-                                                            chapter {item.chapters[item.chapters.length - 2]?.number}
-                                                        </p>
-                                                        <p className='text-end'>
-                                                            {new Date(item.chapters[item.chapters.length - 2]?.publish_date)
-                                                                .toLocaleDateString("en-GB")}
-                                                        </p>
-                                                    </div> : ''
-
+                                                    <p className='text-start'>
+                                                        chapter {item.chapters[item.chapters.length - 2]?.number}
+                                                    </p>
+                                                    <p className='text-end'>
+                                                        {new Date(item.chapters[item.chapters.length - 2]?.publish_date)
+                                                            .toLocaleDateString("en-GB")}
+                                                    </p>
+                                                </div>
                                             }
 
                                             {
-                                                item.chapters[item.chapters.length - 3]?.title ?
-                                                    < div className='bg-gray-600 pr-3 pl-3 text-gray-300 
+                                                item.chapters[item.chapters.length - 3]?.title &&
+                                                < div className='bg-gray-600 pr-3 pl-3 text-gray-300 
                                                           rounded-full cursor-default grid grid-cols-2'>
-                                                        <p className='text-start'>
-                                                            chapter {item.chapters[item.chapters.length - 3]?.number}
-                                                        </p>
-                                                        <p className='text-end'>
-                                                            {new Date(item.chapters[item.chapters.length - 3]?.publish_date)
-                                                                .toLocaleDateString("en-GB")}
-                                                        </p>
-                                                    </div> : ''
+                                                    <p className='text-start'>
+                                                        chapter {item.chapters[item.chapters.length - 3]?.number}
+                                                    </p>
+                                                    <p className='text-end'>
+                                                        {new Date(item.chapters[item.chapters.length - 3]?.publish_date)
+                                                            .toLocaleDateString("en-GB")}
+                                                    </p>
+                                                </div>
 
                                             }
 
                                             {
-                                                item.chapters[item.chapters.length - 4]?.title ?
-                                                    < div className='bg-gray-600 pr-3 pl-3 text-gray-300 hidden
+                                                item.chapters[item.chapters.length - 4]?.title &&
+                                                < div className='bg-gray-600 pr-3 pl-3 text-gray-300 hidden
                                                           rounded-full cursor-default md:grid grid-cols-2'>
-                                                        <p className='text-start'>
-                                                            chapter {item.chapters[item.chapters.length - 4]?.number}
-                                                        </p>
-                                                        <p className='text-end'>
-                                                            {new Date(item.chapters[item.chapters.length - 4]?.publish_date)
-                                                                .toLocaleDateString("en-GB")}
-                                                        </p>
-                                                    </div> : ''
-
+                                                    <p className='text-start'>
+                                                        chapter {item.chapters[item.chapters.length - 4]?.number}
+                                                    </p>
+                                                    <p className='text-end'>
+                                                        {new Date(item.chapters[item.chapters.length - 4]?.publish_date)
+                                                            .toLocaleDateString("en-GB")}
+                                                    </p>
+                                                </div>
                                             }
                                         </div>
                                         {/* -------CHAPTERS END----------------------- */}
                                         {
-                                            item.chapters.length <= 0 ?
-                                                <div className='bg-gray-600 text-red-300 md:text-gray-300 mt-2
-                                                     md:rounded-3xl rounded-md p-1 cursor-default font-mono md:h-full md:p-10 '>
-                                                    <p className='text-center text-xs md:text-lg'>
-                                                        no chapters yet..
-                                                    </p>
-                                                </div> : ''
+                                            item.chapters.length <= 0 &&
+                                            <div className='bg-gray-600 text-red-300 md:text-gray-300 mt-24 md:mt-0
+                                                     md:rounded-3xl rounded-md p-2 cursor-default font-mono md:h-full md:p-10'>
+                                                <p className='text-center text-xs md:text-lg'>
+                                                    no chapters yet..
+                                                </p>
+                                            </div>
                                         }
 
                                     </div>
+
+                                    {
+                                        item.chapters.length > 0 &&
+                                        < div className='bg-gray-600 text-gray-300 md:text-gray-300 m-3 mt-4
+                                    md:rounded-3xl rounded-md p-2 cursor-default font-mono md:h-full md:p-10 md:hidden'>
+                                            <p className='text-center text-xs md:text-lg'>
+                                                {item.chapters.length} chapters
+                                            </p>
+                                        </div>
+                                    }
 
                                 </div>
                                 {/* -------------------NOVEL CARD END---------------------------- */}

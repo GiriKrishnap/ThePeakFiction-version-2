@@ -229,11 +229,11 @@ export default function NovelDetailedView() {
                                    text-white rounded-md pr-2 font-sans w-full drop-shadow-lg'
                                                 onClick={() => addToLibrary(item._id)}>
                                                 {!inLibrary ?
-                                                    <p>
+                                                    <p className='md:text-base text-sm'>
                                                         Add To Library<i className="fa-solid fa-circle-plus m-1.5"></i>
                                                     </p>
                                                     :
-                                                    <p>
+                                                    <p className='md:text-base text-sm'>
                                                         remove Library <i className="fa-solid fa-circle-minus m-1.5"></i>
                                                     </p>
                                                 }
@@ -254,15 +254,16 @@ export default function NovelDetailedView() {
                                             <small className='text-gray-300'>|</small>
 
                                             <small className='text-gray-300'>
-                                                in <NumberFormatter value={item.in_library} /> Library <i className="fa-solid fa-book-bookmark"></i>
+                                                in <NumberFormatter value={item.in_library} />
+                                                Library <i className="fa-solid fa-book-bookmark"></i>
                                             </small>
 
                                             <small className='text-gray-300'>|</small>
 
                                             <Tooltip title="Official Community " placement="bottom">
 
-                                                <p className='text-blue-100 font-mono font-bold cursor-pointer hover:tracking-widest 
-                                    duration-500'
+                                                <p className='text-blue-100 font-mono font-bold cursor-pointer 
+                                                hover:tracking-widest duration-500 md:text-sm text-xs'
                                                     onClick={() => handleCommunityButton(item._id)}>
                                                     community <i className="fa-solid fa-arrow-right"></i>
                                                 </p>
@@ -273,7 +274,7 @@ export default function NovelDetailedView() {
 
 
                                         {/* NOVEL DESCRIPTION */}
-                                        <div className='w-full text-gray-200 overflow-hidden mt-3 p-1'>
+                                        <div className='w-full text-gray-200 overflow-hidden mt-3 p-1 md:text-base text-xs '>
 
                                             <p> {item.description} </p>
 
@@ -335,6 +336,7 @@ export default function NovelDetailedView() {
 
                             {/* -----------------------NOVEL CHAPTERS-------------------- */}
                             <div className='w-full max-h-96 flex flex-col-reverse gap-3 p-5 mt-10 overflow-y-scroll scroll'>
+
                                 {
                                     item.chapters?.length > 0 ?
                                         item.chapters.map((chapter) => (
@@ -363,13 +365,26 @@ export default function NovelDetailedView() {
                                             rounded font-mono'>There is No Chapters</p>
                                 }
 
+
+                                {item.scheduled &&
+
+                                    < div className='bg-gray-900 w-full rounded-lg  p-2 pl-5 pr-5 grid grid-cols-3
+                                     lg:grid-cols-4 font-medium poppins2 text-gray-400 gap-5 hover:font-mono
+                                        select-none cursor-not-allowed'>
+
+                                        <p className='text-left text-xs lg:text-lg lg:col-span-2'>
+                                            {item.scheduled}
+                                        </p>
+                                    </div>
+                                }
+
                             </div>
                             {/* -----------------------NOVEL CHAPTERS END-------------------- */}
 
 
-                            <div className='bg-gray-700 p-5 mt-10 rounded-xl text-white text-2xl font-mono'>
+                            < div className='bg-gray-700 p-5 mt-10 rounded-xl text-white text-2xl font-mono' >
                                 <Comments novelId={item._id} />
-                            </div>
+                            </div >
 
                         </div >
 

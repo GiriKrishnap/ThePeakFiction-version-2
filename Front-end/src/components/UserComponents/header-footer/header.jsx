@@ -4,7 +4,6 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { Link, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { login, authorHome, filter, getUpdatedUrl, myLibraryUrl, profileUrl, trendingUrl } from '../../../util/constants';
-import { useSocket } from '../../../util/NotifySocketContext';
 
 //...........................................................................................
 
@@ -29,7 +28,6 @@ export default function Header({ name }) {
     //...........................................................................................
 
     const navigate = useNavigate();
-    const socket = useSocket();
 
     //...........................................................................................
 
@@ -51,7 +49,6 @@ export default function Header({ name }) {
             if (result.isConfirmed) {
                 localStorage.removeItem("user-login");
                 localStorage.clear();
-                socket.disconnect();
                 navigate('/');
             }
         })
@@ -67,17 +64,6 @@ export default function Header({ name }) {
             setIsAuthor(user.isAuthor);
         }
     }, [])
-
-
-    //...........................................................................................
-
-    // useEffect(() => {
-
-    //     socket.on("notification_received", (data) => {
-    //         toast.success(data, { icon: "😼🚀" });
-    //     })
-
-    // }, [socket]);
 
 
     //...........................................................................................

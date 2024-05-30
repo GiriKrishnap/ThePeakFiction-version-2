@@ -256,9 +256,11 @@ export default function AuthorCreate() {
                         <div className='space-x-2 mt-5 justify-center place-items-center text-center'>
 
 
-                            <input type="date" className='p-2 rounded-lg bg-gray-500 text-white font-mono drop-shadow-md'
+                            <input type="date" className='p-3 w-52 rounded-lg bg-gray-500 text-white font-mono
+                             drop-shadow-md text-center text-lg hover:bg-gray-400'
                                 onChange={(e) => setScheduleDate(e.target.value)} />
-                            <input type="time" className='p-2 rounded-lg bg-gray-500 text-white font-mono drop-shadow-md'
+                            <input type="time" className='p-3 w-52 rounded-lg bg-gray-500 text-white font-mono 
+                            drop-shadow-md text-center text-lg hover:bg-gray-400'
                                 onChange={(e) => setScheduleTime(e.target.value)} />
 
                         </div>

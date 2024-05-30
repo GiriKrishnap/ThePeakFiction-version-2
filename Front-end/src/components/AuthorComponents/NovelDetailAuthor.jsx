@@ -91,6 +91,12 @@ export default function NovelDetailAuthor() {
                     borderRadius: '30px',
                 },
             })
+        } else if (novel[0].scheduled) {
+            toast.error("Scheduled Chapter in Queue", {
+                icon: '😿❌', style: {
+                    borderRadius: '30px',
+                },
+            })
         } else {
 
             navigate(`${authorAddChapter}?NovelId=${id}&number=${chapterNumber}`,
@@ -397,21 +403,35 @@ export default function NovelDetailAuthor() {
 
                                                         <div className='mt-1 text-right text-xs md:pr-4 md:text-base'>
                                                             <p className='hover:underline text-sm lg:text-xl text-gray-300 inline'
-                                                                onClick={() => handleEditChapter(item._id, chapter._id)}>Edit</p>
+                                                                onClick={() => handleEditChapter(item._id, chapter._id)}>
+                                                                Edit
+                                                            </p>
                                                             {
-                                                                chapter.number === item.chapter_count ?
-                                                                    < p className='hover:underline lg:text-xl text-red-600 inline ml-2'
-                                                                        onClick={() => handleDeleteChapter(item._id, chapter._id)}>Delete</p> : ''
+                                                                chapter.number === item.chapter_count &&
+                                                                < p className='hover:underline lg:text-xl
+                                                                     text-red-600 inline ml-2'
+                                                                    onClick={() => handleDeleteChapter(item._id, chapter._id)}>
+                                                                    Delete
+                                                                </p>
                                                             }
                                                         </div>
                                                     </div>
-
-
                                                 </div>
-
                                             </div>
                                         )) : <p className='text-white text-center bg-blue-500 p-2 
                                             rounded font-mono'>no chapters yet..</p>
+                                }
+
+                                {item.scheduled &&
+
+                                    < div className='bg-gray-900 w-full rounded-lg  p-6 pl-5 pr-5 grid grid-cols-3
+                                     lg:grid-cols-4 font-medium poppins2 text-gray-400 gap-5 hover:font-mono
+                                        select-none cursor-not-allowed'>
+
+                                        <p className='text-left text-xs lg:text-lg lg:col-span-2'>
+                                            {item.scheduled}
+                                        </p>
+                                    </div>
                                 }
 
                             </div>

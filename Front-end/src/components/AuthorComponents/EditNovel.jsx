@@ -175,16 +175,25 @@ export default function EditNovel() {
                             required />
                     </div>
 
-                    {
-                        selectedGenre.map((item) => (
-                            <p className='inline p-0.5 ml-3 bg-blue-600 text-white rounded-md'
-                                key={item._id}>{item.name}</p>
-                        ))
-                    }
 
-                    <p className='inline text-gray-200 font-mono '> - Old Genres</p>
                     <div className='grid md:grid-cols-5 gap-2 grid-cols-2 mt-6'>
-                        <p className=' text-gray-200 font-mono'> Select new - </p>
+                        <p className='text-gray-200 font-mono '>  Old Genres --- </p>
+
+                        {
+                            selectedGenre.map((item) => (
+                                <p className='bg-blue-500 pr-2 pl-2 p-0.5 text-gray-200 m-0.5
+                            rounded-xl cursor-default'
+                                    key={item._id}>
+                                    {item.name}
+                                </p>
+                            ))
+                        }
+                    </div>
+
+                    <div className='grid md:grid-cols-5 gap-2 grid-cols-2 mt-6'>
+
+
+                        <p className=' text-gray-200 font-mono'> Select new --- </p>
                         {
                             allGenre.map((item, index) => (
 
