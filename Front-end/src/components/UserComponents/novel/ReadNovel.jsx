@@ -83,8 +83,6 @@ export default function ReadNovel() {
         }
     }
 
-    //.........................................................................
-
     const handleNextAndPrevious = async (chapter) => {
 
         console.log('the number is - ', chapter)
@@ -92,7 +90,6 @@ export default function ReadNovel() {
         navigate(`${readNovel}?NovelId=${NovelId}&number=${chapter}`)
         setChapterNumber(chapter)
         setChapterNumber2(chapterNumber2 + 1);
-
 
         window.scrollTo({
             top: 0,
@@ -102,28 +99,26 @@ export default function ReadNovel() {
 
     }
 
-    //.........................................................................
-
     const handleHomeBtn = () => {
         navigate(`${novelDetailedView}?NovelId=${NovelId}`);
     }
 
-
-    const handleFontSize = (size) => {
-        if (fontSize < 30 && size === 'INC') {
+    const handleFontSize = (action) => {
+        if (fontSize < 30 && action === 'INC') {
             setFontSize(fontSize + 1);
-        } else if (fontSize > 15 && size === 'DEC') {
+        } else if (fontSize > 15 && action === 'DEC') {
             setFontSize(fontSize - 1);
-        } else if ('DEF') {
+        } else if (action === 'DEF') {
             setFontSize(19);
         }
     }
 
     const toggleFullScreen = () => {
         if (!document.fullscreenElement) {
-            document.documentElement.requestFullscreen().catch(err => {
-                alert(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
-            });
+            document.documentElement.requestFullscreen()
+                .catch(err => {
+                    alert(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
+                });
         } else {
             if (document.exitFullscreen) {
                 document.exitFullscreen();
@@ -136,8 +131,6 @@ export default function ReadNovel() {
 
     return (
         <>
-
-            {/* ---------------CHAPTER TITLE , DARK MODE----------------- */}
             <div className={`${darkMode ? "bg-slate-700 text-white" : "bg-gray-200 text-black"} " 
              flex flex-col mb-1  "`}>
 
@@ -162,17 +155,23 @@ export default function ReadNovel() {
 
                     <div className='flex justify-end mr-10 place-items-center md:gap-6'>
 
-                        <div className='hidden md:flex opacity-80 bg-slate-600 p-4 pl-6 pr-6 rounded-2xl hover:scale-105
-                        hover:shadow-lg shadow-black gap-4 justify-center place-items-center select-none'>
+                        <div className='hidden md:flex opacity-80 bg-slate-600 p-4 pl-6 pr-6 rounded-2xl 
+                                        hover:scale-105 hover:shadow-lg shadow-black gap-4 justify-center
+                                        place-items-center select-none'>
                             <i className="fa-solid fa-expand fa-lg hover:scale-125"
-                                onClick={toggleFullScreen}></i>
+                                onClick={toggleFullScreen}>
+                            </i>
                             <p>|</p>
                             <i className="fa-solid fa-up-right-and-down-left-from-center fa-lg hover:scale-125 cursor-zoom-in"
-                                onClick={() => handleFontSize('INC')}></i>
+                                onClick={() => handleFontSize('INC')}>
+                            </i>
                             <p className='font-mono tracking-widest text-xl cursor-pointer'
-                                onClick={() => handleFontSize('DEF')}>{fontSize}</p>
+                                onClick={() => handleFontSize('DEF')}>
+                                {fontSize}
+                            </p>
                             <i className="fa-solid fa-down-left-and-up-right-to-center fa-lg hover:scale-125 cursor-zoom-out"
-                                onClick={() => handleFontSize('DEC')}></i>
+                                onClick={() => handleFontSize('DEC')}>
+                            </i>
                         </div>
 
                         <p onClick={() => setDarkMode(!darkMode)}>
@@ -182,24 +181,18 @@ export default function ReadNovel() {
                                     <i className="fa-solid fa-2xl fa-sun hover:scale-125"></i>
                             }
                         </p>
-
                     </div>
-
                 </div>
-                {/* --------------------CHAPTER TITLE , DARK MODE END---------------- */}
 
 
-                {/* --------------------------CONTENT------------------------------ */}
-                <div className='w-full p-10 novelFont select-none' style={{ fontSize: `${fontSize}px` }}>
+                <div className='w-full p-10 novelFont select-none'
+                    style={{ fontSize: `${fontSize}px` }}>
                     <p style={{ whiteSpace: 'pre-wrap' }}>
                         {chapter?.content}
                     </p>
                 </div>
-                {/* --------------------------CONTENT END------------------------------ */}
 
 
-
-                {/* --------------------------BUTTONS------------------------------ */}
                 <div className='w-full p-5 text-xl novelFont flex gap-2 justify-center text-white'>
 
                     {
@@ -225,8 +218,6 @@ export default function ReadNovel() {
                     }
 
                 </div>
-
-
 
             </div >
 
