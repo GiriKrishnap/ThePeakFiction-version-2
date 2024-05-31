@@ -14,8 +14,8 @@
 </p>
 
 <p align="center">
-  <img src="https://github.com/GiriKrishnap/ThePeakFiction-version-2/assets/127300656/f7617bde-9184-4730-85b9-356d9e879a9c" alt="PHOTO 2" width="50%" />
-  <img src="https://github.com/GiriKrishnap/ThePeakFiction-version-2/assets/127300656/f28ac1ed-0bbc-4476-8089-33752dc96c6d" alt="PHOTO 3" width="50%" />
+  <img src="https://github.com/GiriKrishnap/ThePeakFiction-version-2/assets/127300656/f7617bde-9184-4730-85b9-356d9e879a9c" alt="PHOTO 2" width="40%" />
+  <img src="https://github.com/GiriKrishnap/ThePeakFiction-version-2/assets/127300656/f28ac1ed-0bbc-4476-8089-33752dc96c6d" alt="PHOTO 3" width="40%" />
 </p>
 
 
