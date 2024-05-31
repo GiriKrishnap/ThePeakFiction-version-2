@@ -1,29 +1,67 @@
-𝐂𝐚𝐥𝐥𝐢𝐧𝐠 𝐚𝐥𝐥 𝐒𝐭𝐨𝐫𝐲𝐭𝐞𝐥𝐥𝐞𝐫𝐬 & 𝐅𝐢𝐜𝐭𝐢𝐨𝐧 𝐅𝐚𝐧𝐚𝐭𝐢𝐜𝐬!🚀 ✨ 
+# ThePeakFiction - Web Novel Reading and publishing Website
+# 𝐂𝐚𝐥𝐥𝐢𝐧𝐠 𝐚𝐥𝐥 𝐒𝐭𝐨𝐫𝐲𝐭𝐞𝐥𝐥𝐞𝐫𝐬 & 𝐅𝐢𝐜𝐭𝐢𝐨𝐧 𝐅𝐚𝐧𝐚𝐭𝐢𝐜𝐬!🚀 ✨ 
+
+- [Screenshots](#screenshots)
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+
+
+## Screenshots
 
 <p align="center">
   <img src="https://github.com/GiriKrishnap/ThePeakFiction-version-2/assets/127300656/94211989-078a-4bc9-ab74-c8eb6489dabf" alt="MOBILE VIEW" width="20%" />
   <img src="https://github.com/GiriKrishnap/ThePeakFiction-version-2/assets/127300656/76936bde-029a-4d79-950a-7e9b4d66cdca" alt="PHOTO 1" width="70%" />
 </p>
 
-<p align="center">
+<p>
   <img src="https://github.com/GiriKrishnap/ThePeakFiction-version-2/assets/127300656/f7617bde-9184-4730-85b9-356d9e879a9c" alt="PHOTO 2" width="50%" />
   <img src="https://github.com/GiriKrishnap/ThePeakFiction-version-2/assets/127300656/f28ac1ed-0bbc-4476-8089-33752dc96c6d" alt="PHOTO 3" width="50%" />
 </p>
 
-I'm thrilled to announce the launch of 𝑻𝒉𝒆𝑷𝒆𝒂𝒌𝑭𝒊𝒄𝒕𝒊𝒐𝒏 my second main project, a revolutionary platform designed to ignite your passion for web novels!
->𝘏𝘦𝘳𝘦'𝘴 𝘸𝘩𝘺 𝑻𝒉𝒆𝑷𝒆𝒂𝒌𝑭𝒊𝒄𝒕𝒊𝒐𝒏 𝘪𝘴 𝘵𝘩𝘦 𝘱𝘦𝘳𝘧𝘦𝘤𝘵 𝘱𝘭𝘢𝘤𝘦 𝘧𝘰𝘳 𝘺𝘰𝘶:
 
-🔹𝐔𝐧𝐥𝐞𝐚𝐬𝐡 𝐘𝐨𝐮𝐫 𝐂𝐫𝐞𝐚𝐭𝐢𝐯𝐢𝐭𝐲: Anyone can create and share captivating web novels with ease using our user-friendly interface.
 
-🔹𝐌𝐨𝐧𝐞𝐭𝐢𝐳𝐞 𝐘𝐨𝐮𝐫 𝐌𝐚𝐬𝐭𝐞𝐫𝐩𝐢𝐞𝐜𝐞𝐬: Established authors can charge readers for chapters, unlocking a new revenue stream for your work (conditions apply).
+## Features
 
-🔹𝐓𝐡𝐫𝐢𝐯𝐢𝐧𝐠 𝐂𝐨𝐦𝐦𝐮𝐧𝐢𝐭𝐲: Connect with fellow fiction enthusiasts and discuss stories in vibrant communities dedicated to each novel.
+- User Authentication, Authorization and protected route with jwt
+- Beautiful interface for best user Experience
+  
+- - author side - -
+- Novel Management for Authors (CRUD Operations) 
+- Chapter Management for Authors (CRUD Operations)
+- scheduled upload for novel
+  
+- - reader side - -
+- mobile responsive Reading Interface for Readers
+- community for novels for chatting with fellow readers
+- Commenting and Rating System with features like spolier tag, sicker and image share
+  
+- - admin side - -
+- Novel block and unblock
+- Readers/Authors block and unbloack
+- reject and approve new novels
+- novel status
 
-🔹𝐈𝐧𝐭𝐞𝐫𝐚𝐜𝐭𝐢𝐯𝐞 𝐄𝐱𝐩𝐞𝐫𝐢𝐞𝐧𝐜𝐞: Readers can actively engage with stories through innovative features like approval/rejection functions for admin and in-depth review & rating systems.
+## Technologies and Modules Used
 
-🔹𝐓𝐨𝐩-𝐓𝐢𝐞𝐫 𝐃𝐞𝐬𝐢𝐠𝐧 & 𝐅𝐮𝐧𝐜𝐭𝐢𝐨𝐧𝐚𝐥𝐢𝐭𝐲: Immerse yourself in a beautifully crafted platform built with cutting-edge technology (MERN Stack, Cloudinary, AWS, Vercel.etc).
+  - React
+  - React Router
+  - CSS/Tailwind css
+  - Mui
+    
+  - Node.js
+  - Express
+  - MongoDB
 
-𝐌𝐲 𝐢𝐧𝐬𝐩𝐢𝐫𝐚𝐭𝐢𝐨𝐧? A lifelong love of stories, and a desire to empower creators and readers to connect and share their passion for web novels.
+  - Cloudinary
+  - Socket.io
+  - Disqus
+  - google-oauth2
+  - Agenta
+  - nodeMailer
+  - Multer
+  - JWT
+
+
 
 Visit 𝑻𝒉𝒆𝑷𝒆𝒂𝒌𝑭𝒊𝒄𝒕𝒊𝒐𝒏 today and be a part of the story!
  > Live Page - https://the-peak-fiction-version-2.vercel.app/
