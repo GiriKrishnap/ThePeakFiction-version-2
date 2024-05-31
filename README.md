@@ -13,7 +13,7 @@
   <img src="https://github.com/GiriKrishnap/ThePeakFiction-version-2/assets/127300656/76936bde-029a-4d79-950a-7e9b4d66cdca" alt="PHOTO 1" width="70%" />
 </p>
 
-<p>
+<p align="center">
   <img src="https://github.com/GiriKrishnap/ThePeakFiction-version-2/assets/127300656/f7617bde-9184-4730-85b9-356d9e879a9c" alt="PHOTO 2" width="50%" />
   <img src="https://github.com/GiriKrishnap/ThePeakFiction-version-2/assets/127300656/f28ac1ed-0bbc-4476-8089-33752dc96c6d" alt="PHOTO 3" width="50%" />
 </p>
@@ -25,17 +25,17 @@
 - User Authentication, Authorization and protected route with jwt
 - Beautiful interface for best user Experience
   
-- - author side - -
+- > author side - -
 - Novel Management for Authors (CRUD Operations) 
 - Chapter Management for Authors (CRUD Operations)
 - scheduled upload for novel
   
-- - reader side - -
+- > reader side - -
 - mobile responsive Reading Interface for Readers
 - community for novels for chatting with fellow readers
 - Commenting and Rating System with features like spolier tag, sicker and image share
   
-- - admin side - -
+- > admin side - -
 - Novel block and unblock
 - Readers/Authors block and unbloack
 - reject and approve new novels
