@@ -1,9 +1,12 @@
 𝐂𝐚𝐥𝐥𝐢𝐧𝐠 𝐚𝐥𝐥 𝐒𝐭𝐨𝐫𝐲𝐭𝐞𝐥𝐥𝐞𝐫𝐬 & 𝐅𝐢𝐜𝐭𝐢𝐨𝐧 𝐅𝐚𝐧𝐚𝐭𝐢𝐜𝐬!🚀 ✨ 
 
-![MOBILE VIEW](https://github.com/GiriKrishnap/ThePeakFiction-version-2/assets/127300656/94211989-078a-4bc9-ab74-c8eb6489dabf)
-![PHOTO 1](https://github.com/GiriKrishnap/ThePeakFiction-version-2/assets/127300656/76936bde-029a-4d79-950a-7e9b4d66cdca)
-![PHOTO 2](https://github.com/GiriKrishnap/ThePeakFiction-version-2/assets/127300656/f7617bde-9184-4730-85b9-356d9e879a9c)
-![PHOTO 3](https://github.com/GiriKrishnap/ThePeakFiction-version-2/assets/127300656/f28ac1ed-0bbc-4476-8089-33752dc96c6d)
+<p align="center">
+  <img src="https://github.com/GiriKrishnap/ThePeakFiction-version-2/assets/127300656/94211989-078a-4bc9-ab74-c8eb6489dabf" alt="MOBILE VIEW" width="30%" />
+  <img src="https://github.com/GiriKrishnap/ThePeakFiction-version-2/assets/127300656/76936bde-029a-4d79-950a-7e9b4d66cdca" alt="PHOTO 1" width="30%" />
+  <img src="https://github.com/GiriKrishnap/ThePeakFiction-version-2/assets/127300656/f7617bde-9184-4730-85b9-356d9e879a9c" alt="PHOTO 2" width="30%" />
+  <img src="https://github.com/GiriKrishnap/ThePeakFiction-version-2/assets/127300656/f28ac1ed-0bbc-4476-8089-33752dc96c6d" alt="PHOTO 3" width="30%" />
+</p>
+
 
 
 I'm thrilled to announce the launch of 𝑻𝒉𝒆𝑷𝒆𝒂𝒌𝑭𝒊𝒄𝒕𝒊𝒐𝒏 my second main project, a revolutionary platform designed to ignite your passion for web novels!
