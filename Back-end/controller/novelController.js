@@ -41,7 +41,7 @@ module.exports = {
 
     getTrending: async (req, res) => {
         try {
-            const page = req.query.page;
+            const page = req.query.page || 1;
             const queryFilter = {
                 status: { $nin: ["pending", "rejected"] },
                 is_hide: false,

@@ -28,6 +28,8 @@ export const getAllGenresAPI = () => axios.get('/admin/get-all-genres', config);
 
 export const getNovelDetailsWithIdAPI = (id) => axios.get(`/get-novel/${id}`, config);
 export const getChapterAPI = (id, number) => axios.get(`/get-chapter/${id}/${number}/${userId}`, config);
+export const textToSpeechAPI = (body) => axios.post(`/text-to-speech`, body, { responseType: 'arraybuffer' });
+
 
 export const getMostViewedNovelsAPI = (url) => axios.get(url, config);
 export const gridePostAPI = (url, page) => axios.get(`${url}?userId=${userId}&page=${page}`, config);

@@ -41,6 +41,7 @@ router.post('/edit-profile', userController.editProfile);
 router.post('/pay-to-read-post', novelController.PayToReadPost);
 router.post('/join-community', protect, communityController.joinCommunity);
 router.post('/resend-otp', userController.resendOtp);
+router.post('/text-to-speech', protect, userController.textToSpeech);
 
 ///---------------------------
 module.exports = router;

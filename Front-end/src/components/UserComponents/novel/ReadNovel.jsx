@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
 import { novelDetailedView, readNovel } from '../../../util/constants';
 import Comments from '../../Comments/comments';
-import { checkPayToReadAPI, getChapterAPI, } from '../../../APIs/userAPI';
+import { checkPayToReadAPI, getChapterAPI, textToSpeechAPI, } from '../../../APIs/userAPI';
 import toast from 'react-hot-toast';
 
 //.........................................................................
@@ -23,6 +23,7 @@ export default function ReadNovel() {
     const [chapterNumber, setChapterNumber] = useState(0);
     const [chapterNumber2, setChapterNumber2] = useState(0);
     const [fontSize, setFontSize] = useState(19)
+    const [audioUrl, setAudioUrl] = useState(null);
 
 
 
@@ -83,7 +84,7 @@ export default function ReadNovel() {
         }
     }
 
-    const handleNextAndPrevious = async (chapter) => {
+    const handleNextAndPrevious = (chapter) => {
 
         console.log('the number is - ', chapter)
 
@@ -126,6 +127,28 @@ export default function ReadNovel() {
         }
     };
 
+    const textToSpeech = async (text) => {
+        try {
+
+            if (audioUrl === 'error') {
+                toast.error('encountered an error');
+            } else if (audioUrl !== 'loading' && audioUrl === null) {
+                setAudioUrl('loading');
+                const response = await textToSpeechAPI({ text });
+                if (response.data.status === false) {
+                    setAudioUrl('error');
+                } else {
+                    const audioBlob = new Blob([response.data], { type: 'audio/mpeg' });
+                    const audioUrl = URL.createObjectURL(audioBlob);
+                    setAudioUrl(audioUrl);
+                }
+            }
+        } catch (error) {
+            setAudioUrl('error');
+            toast.error('encountered an error');
+        }
+    }
+
 
     //.........................................................................
 
@@ -150,14 +173,18 @@ export default function ReadNovel() {
                                 </p>
                             </div>
                         </div>
-
                     </div>
+
 
                     <div className='flex justify-end mr-10 place-items-center md:gap-6'>
 
                         <div className='hidden md:flex opacity-80 bg-slate-600 p-4 pl-6 pr-6 rounded-2xl 
                                         hover:scale-105 hover:shadow-lg shadow-black gap-4 justify-center
                                         place-items-center select-none'>
+                            <i className="fa-solid fa-file-audio fa-lg hover:scale-125"
+                                onClick={() => textToSpeech(chapter.content)}>
+                            </i>
+                            <p>|</p>
                             <i className="fa-solid fa-expand fa-lg hover:scale-125"
                                 onClick={toggleFullScreen}>
                             </i>
@@ -185,6 +212,22 @@ export default function ReadNovel() {
                 </div>
 
 
+
+
+                {/* text to speech control */}
+                <div className={`text-center justify-center place-items-center flex p-5 
+                ${audioUrl === null && 'hidden'} ${audioUrl === 'error' && 'hidden'} `} >
+
+                    {audioUrl === 'loading' ? (
+                        <p>Loading audio...</p>
+                    ) : (audioUrl !== null && audioUrl !== 'error' &&
+                        <audio className='w-1/2 drop-shadow-lg shadow-black' controls src={audioUrl}>
+                            Your browser does not support the audio element.
+                        </audio>
+                    )}
+                </div>
+
+
                 <div className='w-full p-10 novelFont select-none'
                     style={{ fontSize: `${fontSize}px` }}>
                     <p style={{ whiteSpace: 'pre-wrap' }}>
@@ -192,9 +235,7 @@ export default function ReadNovel() {
                     </p>
                 </div>
 
-
                 <div className='w-full p-5 text-xl novelFont flex gap-2 justify-center text-white'>
-
                     {
                         chapterNumber > 1 ?
                             <button className='bg-blue-600 w-32 p-2 rounded-lg hover:bg-blue-800'
@@ -202,7 +243,6 @@ export default function ReadNovel() {
                                 <i className="fa-solid fa-angle-left"></i> Previous
                             </button> : ''
                     }
-
 
                     <button className='bg-gray-600 p-2 w-32 rounded-lg hover:bg-gray-800'
                         onClick={() => handleHomeBtn()}>

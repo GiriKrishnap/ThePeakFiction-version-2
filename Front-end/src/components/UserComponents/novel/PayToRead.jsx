@@ -5,17 +5,13 @@ import { PayToReadPostAPI, checkPayToReadAPI } from '../../../APIs/userAPI';
 import toast from 'react-hot-toast';
 import { novelDetailedView, readNovel } from '../../../util/constants';
 
-//.........................................................................
 
 
 export default function PayToRead() {
 
-    //.........................................................................
-
     const navigate = useNavigate();
     const location = useLocation();
 
-    //.........................................................................
 
     const [novelId, setNovelId] = useState('');
     const [authorId, setAuthorId] = useState('');
@@ -24,7 +20,6 @@ export default function PayToRead() {
     const [password, setPassword] = useState('');
     const [isLoading, setIsLoading] = useState(true);
 
-    //.........................................................................
 
     useEffect(() => {
 
@@ -41,18 +36,16 @@ export default function PayToRead() {
         }
 
     }, [])
-    //.........................................................................
+
 
     const checkDetails = async (novelId, chapterNo) => {
         try {
             const userId = JSON.parse(localStorage.getItem("user-login")).id;
-
             const response = await checkPayToReadAPI(novelId, chapterNo, userId);
 
             if (response.data.status) {
 
                 if (response.data.paid) {
-
                     navigate(`${readNovel}?NovelId=${novelId}&number=${chapterNo}`);
 
                 } else if (response.data.price) {
@@ -71,9 +64,6 @@ export default function PayToRead() {
     }
 
 
-    //.........................................................................
-
-
     const handleSubmit = async () => {
         try {
 
@@ -82,7 +72,6 @@ export default function PayToRead() {
             } else {
 
                 const userId = JSON.parse(localStorage.getItem("user-login")).id;
-
                 const body = {
                     novelId,
                     chapterNumber,
@@ -109,46 +98,40 @@ export default function PayToRead() {
         }
     }
 
-    //.........................................................................
 
     const handleBackButton = async (e) => {
         navigate(`${novelDetailedView}?NovelId=${novelId}`, { replace: true });
-
     }
-
-    //.........................................................................
 
     return (
         <>
 
             {
-                isLoading ? <div className="flex flex-col items-center justify-center min-h-screen p-5 min-w-screen bg-slate-600">
+                isLoading ?
+                    <div className="flex flex-col items-center justify-center min-h-screen p-5 min-w-screen
+                 bg-slate-600">
 
 
-                    <div className="flex space-x-2 animate-pulse">
-                        <div className="w-7 h-16 bg-gray-100 rounded-full"></div>
-                        <div className="w-7 h-14 bg-gray-100 rounded-full"></div>
-                        <img src="../assets/logo/webLogo.png" alt="logo" className='w-24 h-240' />
-                        <div className="w-7 h-14 bg-gray-100 rounded-full"></div>
-                        <div className="w-7 h-16 bg-gray-100 rounded-full"></div>
+                        <div className="flex space-x-2 animate-pulse">
+                            <div className="w-7 h-16 bg-gray-100 rounded-full"></div>
+                            <div className="w-7 h-14 bg-gray-100 rounded-full"></div>
+                            <img src="../assets/logo/webLogo.png" alt="logo" className='w-24 h-240' />
+                            <div className="w-7 h-14 bg-gray-100 rounded-full"></div>
+                            <div className="w-7 h-16 bg-gray-100 rounded-full"></div>
+                        </div>
+                        <p className='font-mono text-white animate-pulse'>
+                            - Checking payment status...please wait 🚀 -
+                        </p>
+
+
                     </div>
-                    <p className='font-mono text-white animate-pulse'>
-                        - Checking payment status...please wait 🚀 -
-                    </p>
-
-
-
-                </div>
 
                     :
-
-
-
 
                     <div className='h-screen flex justify-center place-items-center text-black select-none'>
 
                         <div className='md:w-1/2 w-full m-10 h-1/2 bg-white rounded-2xl drop-shadow-xl 
-                      flex flex-col justify-center place-items-center md:p-40 p-20 hover:shadow-2xl '>
+                                      flex flex-col justify-center place-items-center md:p-40 p-20 hover:shadow-2xl '>
                             <p className='poppins2 font-bold md:text-4xl text-2xl'>
                                 Pay - to - Read
                             </p>
@@ -157,35 +140,33 @@ export default function PayToRead() {
                             </small>
 
                             <p className='text-3xl p-1 m-5 text-white font-bold bg-gray-400 
-                    w-full text-center rounded-2xl shadow-sm'>
+                                               w-full text-center rounded-2xl shadow-sm'>
                                 {price}rs
                             </p>
 
-                            <input type="password" name="password" className='w-full p-2 rounded-xl bg-gray-200
-                    focus:bg-gray-600 focus:text-white tracking-widest text-center poppins2 font-extrabold
-                    focus:shadow-xl'
+                            <input type="password" name="password"
+                                className='w-full p-2 rounded-xl bg-gray-200 focus:bg-gray-600 
+                                focus:text-white tracking-widest text-center poppins2 font-extrabold focus:shadow-xl'
                                 placeholder='Password'
                                 onChange={(e) => setPassword(e.target.value)} value={password} maxLength={8}
                                 required autoComplete='false' />
 
                             <div className='grid grid-cols-2 w-full gap-2'>
                                 <button className='w-full p-2 mt-4 bg-blue-500 text-white
-                        rounded-xl hover:bg-blue-600 hover:shadow-xl' onClick={handleBackButton}>
+                                           rounded-xl hover:bg-blue-600 hover:shadow-xl'
+                                    onClick={handleBackButton}>
                                     back
                                 </button>
 
                                 <button className='w-full p-2 mt-4 bg-blue-400 text-white
-                        rounded-xl hover:bg-blue-600 hover:shadow-xl' onClick={handleSubmit}>
+                                         rounded-xl hover:bg-blue-600 hover:shadow-xl'
+                                    onClick={handleSubmit}>
                                     Confirm
                                 </button>
                             </div>
-
                         </div>
-
                     </div>
             }
-
         </>
     )
 }
-//.........................................................................

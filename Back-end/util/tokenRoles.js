@@ -50,6 +50,7 @@ const roles = {
     '/pay-to-read-post': ['author', 'reader'],
     '/join-community': ['author', 'reader'],
     '/get-chapter': ['author', 'reader'],
+    '/text-to-speech': ['author', 'reader'],
 
 };
 

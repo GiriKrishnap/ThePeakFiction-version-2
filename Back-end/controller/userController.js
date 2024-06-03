@@ -340,8 +340,33 @@ module.exports = {
             res.status(400).json({ status: false, message: 'server catch error :: resendOtp' });
             console.log('catch error :: resendOtp', error.message);
         }
-    }
+    },
 
+    textToSpeech: async (req, res) => {
+
+        const text = req.body.text;
+
+        const options = {
+            method: 'POST',
+            url: 'https://api.apyhub.com/tts/text/file',
+            headers: {
+                'apy-token': process.env.TEXT_TO_SPEECH_API_KEY,
+                'Content-Type': 'application/json'
+            },
+            data: { text: text, gender: 'female' },
+            responseType: 'arraybuffer'
+        };
+
+        axios.request(options).then((response) => {
+            console.log(' - - - -  - Axios request successful  - - - - -');
+            res.setHeader('Content-Type', 'audio/mpeg');
+            res.send(response.data);
+        }).catch((error) => {
+            console.error(error.message);
+            res.json({ status: false });
+        });
+
+    }
 }
 
 //---------------------------------------------------------
