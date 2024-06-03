@@ -1,6 +1,6 @@
 import toast from 'react-hot-toast';
 import React, { useEffect, useState } from 'react'
-import { PostEditChapterAPI, authorAddChapterAPI, getChapterEditDetailsAPI } from '../../APIs/userAPI';
+import { PostEditChapterAPI, getChapterEditDetailsAPI } from '../../APIs/userAPI';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { authorNovelDetails, signup } from '../../util/constants';
 //.........................................................................
@@ -150,7 +150,7 @@ export default function EditChapter() {
                     <button type="button" className="text-white bg-red-500 hover:bg-red-600 mt-5
                       focus:ring-blue-300 font-medium rounded-lg text-sm w-full px-5
                       py-2.5 text-center"
-                        onClick={() => navigate(`${AuthorNovelDetails}?NovelId=${NovelId}`, { replace: true })}>
+                        onClick={() => navigate(`${authorNovelDetails}?NovelId=${NovelId}`, { replace: true })}>
                         Cancel
                     </button>
                     {/* ----------BUTTONS END----------------------- */}
