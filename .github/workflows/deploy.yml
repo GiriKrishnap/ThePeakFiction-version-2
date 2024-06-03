@@ -26,7 +26,7 @@ jobs:
       run: |
         echo "${{ secrets.EC2_KEY }}" > key.pem
         chmod 400 key.pem
-        scp -o StrictHostKeyChecking=no -i key.pem -r * ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:/ThePeakFiction-version-2/Back-end
+        scp -o StrictHostKeyChecking=no -i key.pem -r * ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}/ThePeakFiction-version-2/Back-end
         ssh -o StrictHostKeyChecking=no -i key.pem ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << 'EOF'
           cd ThePeakFiction-version-2/Back-end/
           npm install
