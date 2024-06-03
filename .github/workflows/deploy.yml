@@ -32,9 +32,9 @@ jobs:
       run: |
         echo "${{ secrets.EC2_KEY }}" > key.pem
         chmod 400 key.pem
-        scp -o StrictHostKeyChecking=no -i key.pem -r * ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:/ThePeakFiction-version-2
+        scp -o StrictHostKeyChecking=no -i key.pem -r * ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:/ThePeakFiction-version-2/Back-end
         ssh -o StrictHostKeyChecking=no -i key.pem ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << 'EOF'
-          cd ThePeakFiction-version-2/
+          cd ThePeakFiction-version-2/Back-end
           npm install
           pm2 restart all  # or any other command to restart your server
         EOF
