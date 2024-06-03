@@ -18,7 +18,6 @@ agenda.define('schedule-novel', async (job) => {
                     gcoin: gcoin || 0
                 }
             },
-            $inc: { chapter_count: 1 },
             $set: { updated_date: currentDate, scheduled: '' }
         })
 

@@ -114,7 +114,10 @@ module.exports = {
             } else {
 
                 await NovelModel.updateOne({ _id: NovelId }, {
-                    $set: { scheduled: `Chapter scheduled for ${scheduleDate} at ${scheduleTime}` }
+                    $set: {
+                        scheduled: `Chapter scheduled for ${scheduleDate} at ${scheduleTime}`,
+                        chapter_count: +1
+                    }
                 });
 
                 const isoDateTime = new Date(`${scheduleDate},${scheduleTime}`)
@@ -125,7 +128,7 @@ module.exports = {
                     gcoin,
                     chapterNumber,
                     scheduleDate,
-                    scheduleTime,
+                    scheduleTime,   
                     currentDate
                 });
                 res.json({ status: true, message: `Scheduled at ${scheduleTime} on ${scheduleDate}` })
