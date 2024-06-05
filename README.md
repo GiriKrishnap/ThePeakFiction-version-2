@@ -52,22 +52,22 @@
 
 ## 💻 Technologies and Modules Used
 
-  -react
-  -Mui
-  -tailwindcss
+- react
+- Mui
+- tailwindcss
   
-  -Node.js
-  -Express
-  - MongoDB
+- Node.js
+- Express
+- MongoDB
 
-  - Cloudinary
-  - Socket.io
-  - Disqus
-  - google-oauth2
-  - Agenta
-  - nodeMailer
-  - Multer
-  - JWT
+- Cloudinary
+- Socket.io
+- Disqus
+- google-oauth2
+- Agenta
+- nodeMailer
+- Multer
+- JWT
 
 
 
