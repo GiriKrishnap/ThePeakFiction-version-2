@@ -1,7 +1,6 @@
 <div align="center">
 
-  ![ThePeakFiction com  670110C](https://github.com/GiriKrishnap/ThePeakFiction-version-2/assets/127300656/6fef999d-eb41-4a45-b69c-db6923e6697c)
-
+<img src="https://github.com/GiriKrishnap/ThePeakFiction-version-2/assets/127300656/6fef999d-eb41-4a45-b69c-db6923e6697c" alt="Logo" width="80" height="80">
 
 <h1 align="center" id="title">ThePeakFiction</h1>
 <p id="description" align="center" >"A web novel publishing and reading website built using the MERN stack to showcase my skills."</p>
