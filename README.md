@@ -20,7 +20,7 @@
 
 
 
-## Features
+## ✨ Features
 
 - User Authentication, Authorization and protected route with jwt
 - Beautiful interface for best user Experience
@@ -41,7 +41,7 @@
 - reject and approve new novels
 - novel status
 
-## Technologies and Modules Used
+## 💻 Technologies and Modules Used
 
   - React
   - React Router
