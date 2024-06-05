@@ -1,5 +1,8 @@
-# ThePeakFiction - Web Novel Reading and publishing Website
-# 𝐂𝐚𝐥𝐥𝐢𝐧𝐠 𝐚𝐥𝐥 𝐒𝐭𝐨𝐫𝐲𝐭𝐞𝐥𝐥𝐞𝐫𝐬 & 𝐅𝐢𝐜𝐭𝐢𝐨𝐧 𝐅𝐚𝐧𝐚𝐭𝐢𝐜𝐬!🚀 ✨ 
+<h1 align="center" id="title">ThePeakFiction</h1>
+<p id="description">"A web novel publishing and reading website built using the MERN stack to showcase my skills."</p>
+<br/>
+<p align="center"><img src="https://img.shields.io/badge/MongoDB-47A248.svg?style=for-the-badge&amp;logo=MongoDB&amp;logoColor=white" alt="shields"><img src="https://img.shields.io/badge/Express-000000.svg?style=for-the-badge&amp;logo=Express&amp;logoColor=white" alt="shields"><img src="https://img.shields.io/badge/React-61DAFB.svg?style=for-the-badge&amp;logo=React&amp;logoColor=white" alt="shields"><img src="https://img.shields.io/badge/Node.js-5FA04E.svg?style=for-the-badge&amp;logo=nodedotjs&amp;logoColor=white" alt="shields"></p>
+
 <hr/>
 
 - [Screenshots](#screenshots)
