@@ -43,13 +43,12 @@
 
 ## 💻 Technologies and Modules Used
 
-  - [React](https://img.shields.io/badge/React-61DAFB.svg?style=for-the-badge&logo=React&logoColor=black)
-  - React Router
-  - CSS/Tailwind css
-  - Mui
+[React](https://img.shields.io/badge/React-61DAFB.svg?style=for-the-badge&logo=React&logoColor=black)[MUI](https://img.shields.io/badge/MUI-007FFF.svg?style=for-the-badge&logo=MUI&logoColor=white)
+
+Mui
     
-  - Node.js
-  - Express
+Node.js
+Express
   - MongoDB
 
   - Cloudinary
