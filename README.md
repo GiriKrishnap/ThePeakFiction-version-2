@@ -1,5 +1,5 @@
 <h1 align="center" id="title">ThePeakFiction</h1>
-<p id="description">"A web novel publishing and reading website built using the MERN stack to showcase my skills."</p>
+<p id="description" align="center" >"A web novel publishing and reading website built using the MERN stack to showcase my skills."</p>
 <br/>
 <p align="center"><img src="https://img.shields.io/badge/MongoDB-47A248.svg?style=for-the-badge&amp;logo=MongoDB&amp;logoColor=white" alt="shields"><img src="https://img.shields.io/badge/Express-000000.svg?style=for-the-badge&amp;logo=Express&amp;logoColor=white" alt="shields"><img src="https://img.shields.io/badge/React-61DAFB.svg?style=for-the-badge&amp;logo=React&amp;logoColor=white" alt="shields"><img src="https://img.shields.io/badge/Node.js-5FA04E.svg?style=for-the-badge&amp;logo=nodedotjs&amp;logoColor=white" alt="shields"></p>
 
