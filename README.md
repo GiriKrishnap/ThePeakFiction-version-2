@@ -25,17 +25,17 @@
 - User Authentication, Authorization and protected route with jwt
 - Beautiful interface for best user Experience
   
-- > author side - -
+ author side - -
 - Novel Management for Authors (CRUD Operations) 
 - Chapter Management for Authors (CRUD Operations)
 - scheduled upload for novel
   
-- > reader side - -
+ reader side - -
 - mobile responsive Reading Interface for Readers
 - community for novels for chatting with fellow readers
 - Commenting and Rating System with features like spolier tag, sicker and image share
   
-- > admin side - -
+ admin side - -
 - Novel block and unblock
 - Readers/Authors block and unbloack
 - reject and approve new novels
@@ -43,7 +43,7 @@
 
 ## 💻 Technologies and Modules Used
 
-  - React
+  - [React](https://img.shields.io/badge/React-61DAFB.svg?style=for-the-badge&logo=React&logoColor=black)
   - React Router
   - CSS/Tailwind css
   - Mui
