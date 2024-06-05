@@ -1,3 +1,8 @@
+<div align="center">
+
+  ![ThePeakFiction com  670110C](https://github.com/GiriKrishnap/ThePeakFiction-version-2/assets/127300656/6fef999d-eb41-4a45-b69c-db6923e6697c)
+
+
 <h1 align="center" id="title">ThePeakFiction</h1>
 <p id="description" align="center" >"A web novel publishing and reading website built using the MERN stack to showcase my skills."</p>
 <br/>
@@ -69,3 +74,5 @@
 
 Visit 𝑻𝒉𝒆𝑷𝒆𝒂𝒌𝑭𝒊𝒄𝒕𝒊𝒐𝒏 today and be a part of the story!
  > Live Page - https://the-peak-fiction-version-2.vercel.app/
+
+</div>
