@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://github.com/GiriKrishnap/ThePeakFiction-version-2/assets/127300656/6fef999d-eb41-4a45-b69c-db6923e6697c" alt="Logo" width="80" height="80">
+<img src="https://github.com/GiriKrishnap/ThePeakFiction-version-2/assets/127300656/6fef999d-eb41-4a45-b69c-db6923e6697c" alt="Logo" width="90" height="90">
 
 <h1 align="center" id="title">ThePeakFiction</h1>
 <p id="description" align="center" >"A web novel publishing and reading website built using the MERN stack to showcase my skills."</p>
@@ -29,27 +29,27 @@
 
 <hr/>
 
-## ✨ Features
+## 🧐 Features    
 
-- User Authentication, Authorization and protected route with jwt
-- Beautiful interface for best user Experience
-  
- author side - -
-- Novel Management for Authors (CRUD Operations) 
+### Reader side
+- User Authentication, Authorization and protected route with JWT
+ - Mobile responsive Reading Interface for Readers
+ - Community for novels for chatting with fellow readers
+ - Commenting and Rating System with features like spolier tag, sticker and image share
+
+### author side 
+- Novel Management for Authors (CRUD Operations)
 - Chapter Management for Authors (CRUD Operations)
-- scheduled upload for novel
-  
- reader side - -
-- mobile responsive Reading Interface for Readers
-- community for novels for chatting with fellow readers
-- Commenting and Rating System with features like spolier tag, sicker and image share
-  
- admin side - -
-- Novel block and unblock
-- Readers/Authors block and unbloack
-- reject and approve new novels
-- novel status
+ - Scheduled upload for novel
+
+ ### admin side 
+ - Novel block and unblock
+ - Readers/Authors block and unbloack
+ - Reject and approve new novels
+ - Novel status
+    
 <hr/>
+
 ## 💻 Technologies and Modules Used
 
   -react
